@@ -108,13 +108,11 @@ module.exports = {
 
 `project/package.json`:
 
-```json
+```js
 {
   "scripts": {
     "docs:dev": "vuepress dev docs",
-    "docs:build": "vuepress build docs",
-    // 利用 yubisaki-shell 一键部署, 当然首先你得安装它 :)
-    "docs:deploy": "yubisaki deploy -u bloss -p docs -r bloss.github.io"
+    "docs:build": "vuepress build docs"
   }
 }
 ```
