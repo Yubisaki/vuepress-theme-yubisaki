@@ -1,0 +1,69 @@
+.bounce-enter-active,
+.bounce-leave-active,
+.fade-enter-active,
+.fade-leave-active
+  absolute(left top)
+  size 100%
+
+.bounce-enter-active
+  z-index 1
+  animation bounce-in .1s
+
+.bounce-leave-active
+  z-index -1
+  animation bounce-out .1s
+
+@keyframes bounce-in
+  from
+    transform scale(1.25)
+
+  50%
+    transform scale(1.125)
+
+  to
+    transform scale(1)
+
+@keyframes bounce-out
+  from
+    opacity 1
+
+  50%
+    opacity .5
+
+  to
+    opacity 0
+
+.fade-enter-active, .fade-leave-active
+  transition opacity .1s
+
+.fade-enter, .fade-leave-active
+  opacity 0
+
+.bottom-enter-active, .bottom-leave-active
+  transform: translate3d(0, 0, 0)
+  transition transform .2s
+
+.bottom-enter, .bottom-leave-active
+  transform translate3d(0, 100%, 0)
+
+.top-enter-active, .top-leave-active
+  transform: translate3d(0, 0, 0)
+  transition transform .2s
+
+.top-enter, .top-leave-active
+  transform translate3d(0, -100%, 0)
+
+.left-enter-active, .left-leave-active, .right-enter-active, .right-leave-active
+  transform: translate3d(0, 0, 0)
+  transition transform .2s
+
+.left-enter, .left-leave-active
+  transform translate3d(-100%, 0, 0)
+
+.right-enter, .right-leave-active
+  transform translate3d(100%, 0, 0)
+
+
+
+
+

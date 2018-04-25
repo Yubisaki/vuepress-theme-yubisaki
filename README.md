@@ -1,0 +1,111 @@
+# vuepress-theme-yubisaki
+
+## HomePage
+
+[Yubisaki-theme](https://stickmy.cn/yubisaki/)
+
+## USAGE
+
+```bash
+yarn add vuepress-theme-yubisaki -S
+```
+
+## Article
+
+在 `markdown` 文件头部加上以下内容 (TODO: 提供脚本自动生成)
+
+```yaml
+title: 文章标题
+# 用于排序
+date: 2017-08-15 10:27:26
+description: 文章概述, 用于在文章首页展示
+# 一些 meta 标签, 可以用于被搜索引擎爬取
+meta:
+  - name: description
+    content: 一些描述
+  - name: keywords # keywords 标签, 在页内搜索时会被查询
+    content: theme vuepress
+```
+
+## 自定义 layout
+
+在 `markdown` 文件头部加上以下内容
+
+```yaml
+heroText: Yubisaki # title
+activity: true # 使用自定义的 activity layout, 会收起右边的卡片栏
+hidden: true # 设置是否在文章列表中显示
+tagline: vuepress 博客主题 # 描述
+heroImage: /static/logo.png # logo
+# 参考官方默认主题的配置
+actionText: 了解一下 →  
+actionLink: /yubisaki/usage.html # action 链接
+features:
+  - title: 这是什么
+    details: 一个基于 vuepress 的博客主题, 它基于 vuepress 提供的默认主题
+  - title: 有哪些特点
+    details: 提供文章列表, 文章分页, 文章详情, github card, 自定义活动页 layout 等等功能
+  - title: TODO
+    details: 标签云, TAG ARCHIVE, 一些脚本, 一些 开箱即用的layout
+footer: by stickmy
+```
+
+## 配置
+
+这边放上我的博客的配置文件: `.vuepress/config.js`, 以供大家参考
+
+```js
+module.exports = {
+  // 启用自定义的主题
+  theme: 'yubisaki',
+  title: 'Yubisaki',
+  description: 'vuepress theme Yubisaki',
+  head: [
+      ['link', { rel: 'icon', href: `/favicon.ico` }]
+  ],
+  port: 3000,
+  // Google Analytics ID
+  ga: 'xxxxx',
+  // PWA support
+  serviceWorker: true,
+  // fuck IE
+  evergreen: true,
+  markdown: {
+    // markdown-it-anchor 的选项
+    anchor: { permalink: true },
+    // markdown-it-toc 的选项
+    toc: { includeLevel: [1, 2] },
+    config: md => {
+      md.use(require('markdown-it-task-lists')) // 一个 checkbox 的 TODO List 插件
+        .use(require('markdown-it-imsize'), { autofill: true }) // 支持自定义 md 图片大小 ![](http://test.png =200x200)
+    }
+  },
+  // 主题的一些配置
+  themeConfig: {
+    // 博客背景图片
+    background: `/background/path`,
+    // github card
+    github: 'github username',
+    // 博客的 logo
+    logo: '/logo/path',
+    // 定制文章标题颜色
+    accentColor: '#ac3e40',
+    // 每页显示的文章数量
+    per_page: 5,
+    // 和 vuepress 默认主题一样, 定制导航栏上的链接
+    nav: [
+        { text: 'HOME', link: '/' },
+        { text: 'GITHUB', link: 'https://github.com/bloss' },
+        { text: '关于我', link: '/about/' }, 
+    ]
+  }
+}
+```
+
+**在 docs 目录下, 务必放一个 markdown 文件, 用于生成根路径路由, 它可以是一个空文件**
+
+## TODO
+
+- 标签云
+- 文章分类
+- 更多类似 github card 的卡片

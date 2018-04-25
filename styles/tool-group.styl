@@ -1,0 +1,15 @@
+@require './config'
+@require './card'
+
+.tool-group
+  flex-grow 1
+  position fixed
+  top $navbarHeight + 1rem
+  width $toolWidth + 3rem
+  margin-left $pageWidth
+
+@media (max-width ($MQNarrow + 1px))
+  .tool-group
+    position static
+    width auto 
+    margin-left 0

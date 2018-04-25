@@ -1,0 +1,17 @@
+{
+  "name": "vuepress-theme-yubisaki",
+  "version": "1.0.7",
+  "description": "vuepress-theme",
+  "repository": "https://github.com/Bloss/vuepress-theme-yubisaki",
+  "main": "util.js",
+  "keywords": [
+    "vuepress",
+    "theme",
+    "vuepress-theme"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "wuwaki",
+  "license": "ISC"
+}
