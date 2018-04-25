@@ -54,6 +54,20 @@ export function isActive (route, path) {
   }
 }
 
+export function getTitle (siteTitle, page) {
+  if(page.frontmatter.activity) {
+    return page.frontmatter.title || siteTitle
+  }
+
+  const selfTitle = page.frontmatter.title || page.title
+  
+  return siteTitle
+    ? selfTitle
+      ? (siteTitle + ' | ' + selfTitle)
+      : siteTitle
+    : selfTitle
+}
+
 // remove page in nav
 export function pageNormalize(pages, navs) {
   const navList = navs || []

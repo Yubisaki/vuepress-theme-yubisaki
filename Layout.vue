@@ -41,8 +41,8 @@ import Sidebar from "./Sidebar.vue";
 import ToolGroup from "./ToolGroup.vue";
 import ArticleGroup from './ArticleGroup.vue'
 import Pagation from './Pagation.vue'
-import { pathToComponentName, getTitle, getLang } from "@app/util";
-import { resolveSidebarItems, pageSortByDate, pageNormalize } from "./util";
+import { pathToComponentName } from "@app/util";
+import { resolveSidebarItems, pageSortByDate, pageNormalize, getTitle } from "./util";
 
 export default {
   components: { Activity, Page, Sidebar, Navbar, ToolGroup, ArticleGroup, Pagation },
