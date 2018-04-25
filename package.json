@@ -1,6 +1,6 @@
 {
   "name": "vuepress-theme-yubisaki",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "vuepress-theme",
   "repository": "https://github.com/Bloss/vuepress-theme-yubisaki",
   "main": "util.js",
