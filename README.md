@@ -102,7 +102,24 @@ module.exports = {
 }
 ```
 
+## 开发, 部署
+
 **在 docs 目录下, 务必放一个 markdown 文件, 用于生成根路径路由, 它可以是一个空文件**
+
+`project/package.json`:
+
+```json
+{
+  "scripts": {
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs",
+    // 利用 yubisaki-shell 一键部署, 当然首先你得安装它 :)
+    "docs:deploy": "yubisaki deploy -u bloss -p docs -r bloss.github.io"
+  }
+}
+```
+
+利用 `npm script` 去开发, 运行. 它会将 `node_modules/.bin` 加入到 `node shell` 的 `PATH` 变量中, 这样我们就可以找到主题的正确路径
 
 ## TODO
 
