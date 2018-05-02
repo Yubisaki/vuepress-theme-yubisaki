@@ -12,7 +12,7 @@ yarn add vuepress-theme-yubisaki -S
 
 ## Article
 
-在 `markdown` 文件头部加上以下内容 (TODO: 提供脚本自动生成)
+在 `markdown` 文件头部加上以下内容 (已提供脚本自动生成)
 
 ```yaml
 title: 文章标题
@@ -92,6 +92,8 @@ module.exports = {
     accentColor: '#ac3e40',
     // 每页显示的文章数量
     per_page: 5,
+    // 创建文章的时间格式, 不设则不显示
+    date_format: 'yyyy-MM-dd',
     // 和 vuepress 默认主题一样, 定制导航栏上的链接
     nav: [
         { text: 'HOME', link: '/' },

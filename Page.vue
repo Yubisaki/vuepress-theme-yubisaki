@@ -5,6 +5,7 @@
       :style="overrideStyle">
       {{ title }}
     </h1>
+    <span class="page-timestamp">{{ createTime }}</span>
     <Content :custom="false"/>
     <div class="content edit-link" v-if="editLink">
       <a :href="editLink" target="_blank" rel="noopener noreferrer">{{ editLinkText }}</a>
@@ -60,6 +61,13 @@ export default {
     },
     title() {
       return this.$page.frontmatter.title
+    },
+    createTime() {
+      const stamp = this.$page.frontmatter.date
+      const format = this.$site.themeConfig['date_format']      
+      if(!stamp || !format) return ''
+      const date = new Date(stamp)
+      return date.Format(format)
     },
     overrideStyle() {
       const { accentColor } = this.$site.themeConfig
@@ -131,6 +139,12 @@ function find(path, pages, offset) {
 .page-title
   margin-bottom -2rem
   padding 0 2.5rem
+
+.page-timestamp
+  display block
+  font-size 14px
+  padding 0 2.5rem
+  margin-top 2.5rem
 
 .edit-link.content
   padding-top 0 !important
