@@ -92,7 +92,7 @@ module.exports = {
     accentColor: '#ac3e40',
     // 每页显示的文章数量
     per_page: 5,
-    // 创建文章的时间格式, 不设则不显示
+    // 创建文章的时间格式, 不设则不显示 可选 [yyyy-MM-dd HH:mm:ss]
     date_format: 'yyyy-MM-dd',
     // 和 vuepress 默认主题一样, 定制导航栏上的链接
     nav: [

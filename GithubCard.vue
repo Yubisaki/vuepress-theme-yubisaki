@@ -7,15 +7,20 @@
       </a>
       <h1>{{ name }}</h1>
       <ul class="github-info">
-          <li><a :href="repoUrl"><strong>{{ repoNum }}</strong>repos</a></li>
-          <li><a :href="gistsUrl"><strong>{{ gistsNum }}</strong>gists</a></li>
-          <li><a :href="followersUrl"><strong>{{ followersNum }}</strong>followers</a></li>
+          <li><a :href="repoUrl" target="_blank"><strong>{{ repoNum }}</strong>repos</a></li>
+          <li><a :href="gistsUrl" target="_blank"><strong>{{ gistsNum }}</strong>gists</a></li>
+          <li><a :href="followersUrl" target="_blank"><strong>{{ followersNum }}</strong>followers</a></li>
       </ul>
     </div>
   </transition>
 </template>
 
 <script>
+const urlMap = {
+  repoTab: '?tab=repositories',
+  followersTab: '?tab=followers'
+}
+
 export default {
   name: "github-card",
   data() {
@@ -33,10 +38,14 @@ export default {
     };
   },
   mounted() {
-    const { themeConfig } = this.$site;
-    const user = themeConfig.github;
-    if (!user) return;
-    this.githubUserInfo(user).then(this.githubInfoHandle);
+    if (!this.user) return;
+    this.githubUserInfo(this.user).then(this.githubInfoHandle);
+  },
+  computed: {
+    user() {
+      const { themeConfig } = this.$site;
+      return themeConfig.github
+    }
   },
   methods: {
     githubUserInfo(user) {
@@ -53,21 +62,18 @@ export default {
         name,
         html_url,
         followers,
-        followers_url,
-        gists_url,
         public_gists,
-        repos_url,
         public_repos
       } = userInfo;
       this.avatar = avatar_url;
       this.name = name;
       this.userUrl = html_url;
       this.repoNum = public_repos;
-      this.repoUrl = repos_url;
+      this.repoUrl = `${html_url}${urlMap.repoTab}`;
       this.followersNum = followers;
-      this.followersUrl = followers_url;
+      this.followersUrl = `${html_url}${urlMap.followersTab}`;
       this.gistsNum = public_gists;
-      this.gistsUrl = gists_url;
+      this.gistsUrl = `https://gist.github.com/${this.user}`;
     }
   }
 };
