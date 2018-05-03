@@ -59,13 +59,7 @@ export function getTitle (siteTitle, page) {
     return page.frontmatter.title || siteTitle
   }
 
-  const selfTitle = page.frontmatter.title || page.title
-  
   return siteTitle
-    ? selfTitle
-      ? (siteTitle + ' | ' + selfTitle)
-      : siteTitle
-    : selfTitle
 }
 
 // remove page in nav
