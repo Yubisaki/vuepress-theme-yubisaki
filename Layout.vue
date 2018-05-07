@@ -17,11 +17,15 @@
           <Activity v-else-if="$page.frontmatter.activity"/>
           <!-- article list -->
           <ArticleGroup v-else-if="isRoot" :page-items="pageItems" />
+          <!-- leetcode list -->
+          <!-- <LeetCodeGroup v-else-if="isLeetCode" :page-items="pageItems" /> -->
+          <!-- nav with layout list -->
+          <ArticleGroup v-else-if="isNavLayout" :page-items="pageItems" />
           <!-- article page -->
           <Page v-else :sidebar-items="sidebarItems"/>
           <!-- pagation selector -->
-          <Pagation v-if="isRoot" 
-            :page-items="pagesWithoutRoot" 
+          <Pagation v-if="isRoot || isNavLayout" 
+            :page-items="pages" 
             @change="page => currentPage = page" /> 
         </div>
         <ToolGroup v-if="!isNoToolGroup" />
@@ -40,12 +44,15 @@ import Page from "./Page.vue";
 import Sidebar from "./Sidebar.vue";
 import ToolGroup from "./ToolGroup.vue";
 import ArticleGroup from './ArticleGroup.vue'
+import LeetCodeGroup from './LeetCodeGroup.vue'
 import Pagation from './Pagation.vue'
+import navLayoutMixin from './navLayout.mixin'
 import { pathToComponentName } from "@app/util";
-import { resolveSidebarItems, pageSortByDate, pageNormalize, getTitle } from "./util";
+import { resolveSidebarItems, getTitle } from "./util";
 
 export default {
-  components: { Activity, Page, Sidebar, Navbar, ToolGroup, ArticleGroup, Pagation },
+  mixins: [navLayoutMixin],
+  components: { Activity, Page, Sidebar, Navbar, ToolGroup, ArticleGroup, LeetCodeGroup, Pagation },
   data() {
     return {
       isSidebarOpen: false,
@@ -57,16 +64,12 @@ export default {
       return this.$route.path === '/'
     },
     isNoToolGroup() {
-        return this.$page.frontmatter.layout || this.$page.frontmatter.activity
-    },
-    pagesWithoutRoot() {
-      return pageNormalize(this.$site.pages, this.$site.themeConfig.nav)
+      return this.$page.frontmatter.layout || this.$page.frontmatter.activity
     },
     pageItems() {
-      const perPage = this.$site.themeConfig['per_page'] || 5
-      const start = (this.currentPage - 1) * perPage
-      const end = this.currentPage * perPage
-      return this.pagesWithoutRoot.filter((page, i) => (i >= start && i < end))
+      const start = (this.currentPage - 1) * this.perPage
+      const end = this.currentPage * this.perPage
+      return this.pages.filter((page, i) => (i >= start && i < end))
     },
     shouldShowNavbar() {
       const { themeConfig } = this.$site;
@@ -147,6 +150,12 @@ export default {
     };
     this.$watch("$page", updateMeta);
     updateMeta();
+
+    // when swtich tab, change the current page
+    const updateCurPage = () => {
+      this.currentPage = 1
+    }
+    this.$watch('pages', updateCurPage)
 
     // configure progress bar
     nprogress.configure({ showSpinner: false });
