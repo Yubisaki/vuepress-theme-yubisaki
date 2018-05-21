@@ -4,8 +4,7 @@
       <router-link 
         :to="this.info.path" :style="overrideStyle">{{ title }}</router-link>
     </h2>
-    <div v-if="isOverview">
-      {{ overview }}
+    <div v-html="info.excerpt">
     </div>
     <img :src="isBanner" alt="overview" v-if="isBanner" class="article-banner" />
   </div>
@@ -23,12 +22,6 @@
     computed: {
       title() {
         return this.info.frontmatter.title || this.info.title
-      },
-      isOverview() {
-        return this.info.frontmatter.description
-      },
-      overview() {
-        return this.info.frontmatter.description
       },
       headerOverviewClasses() {
         return (this.isOverview || this.isBanner) ? 'overview' : ''
@@ -53,6 +46,19 @@
     padding 16px 20px
     h2:not(.overview)
       border: 0
+    img // article card img css hack
+      display block
+      max-width 100%
+    a[class*="header-anchor"] // article card '#' css hack
+      display none
+    pre[class*="language-"] // article card language class css hack
+      position relative
+      &:before
+        position absolute
+        top 0.8em
+        right 1em
+        font-size 0.75rem;
+        color: rgba(255, 255, 255, 0.4)
 
   .article-banner
     width 80%

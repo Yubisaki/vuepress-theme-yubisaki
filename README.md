@@ -2,7 +2,7 @@
 
 ## HomePage
 
-[Yubisaki-theme](https://stickmy.cn/yubisaki/)
+[Yubisaki-theme](https://wuwaki.me/yubisaki/)
 
 ## USAGE
 

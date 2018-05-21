@@ -17,8 +17,6 @@
           <Activity v-else-if="$page.frontmatter.activity"/>
           <!-- article list -->
           <ArticleGroup v-else-if="isRoot" :page-items="pageItems" />
-          <!-- leetcode list -->
-          <!-- <LeetCodeGroup v-else-if="isLeetCode" :page-items="pageItems" /> -->
           <!-- nav with layout list -->
           <ArticleGroup v-else-if="isNavLayout" :page-items="pageItems" />
           <!-- article page -->
