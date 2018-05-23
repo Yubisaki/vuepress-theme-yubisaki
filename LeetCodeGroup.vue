@@ -1,28 +1,28 @@
 <template>
-  <div class="article-group" >
+  <div class="leetcode-group" >
     <template v-for="info in pageItems">
-        <ArticleCard :info="info"/>
+        <LeetCodeCard :info="info"/>
     </template>
   </div>
 </template>
 
 <script>
-    import ArticleCard from './ArticleCard'
+    import LeetCodeCard from './LeetCodeCard.vue'
     export default {
-        name: 'article-group',
+        name: 'leetcode-group',
         props: ['pageItems'],
-        components: { ArticleCard }
+        components: { LeetCodeCard }
     }
 </script>
 
 <style lang="stylus">
     @require './styles/config'
 
-    .article-group
+    .leetcode-group
         margin-right 10px
         padding-bottom 10px
 
     @media (max-width ($MQNarrow + 1px))
-      .article-group
+      .leetcode-group
         margin-right 0
 </style>

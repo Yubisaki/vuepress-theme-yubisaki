@@ -30,7 +30,10 @@
 
 <script>
 import { pageNormalize } from "./util";
+import navLayoutMixin from './navLayout.mixin'
+
 export default {
+  mixins: [navLayoutMixin],  
   data() {
     return {
       query: "",
@@ -39,9 +42,6 @@ export default {
     };
   },
   computed: {
-    pagesWithoutRoot() {
-      return pageNormalize(this.$site.pages, this.$site.themeConfig.nav);
-    },
     showSuggestions() {
       return this.focused && this.suggestions && this.suggestions.length;
     },
@@ -52,7 +52,7 @@ export default {
       }
 
       const max = 5;
-      const pages = this.pagesWithoutRoot;
+      const pages = this.pages;
       const localePath = this.$localePath;
       const matches = item => {
         const keywords = this.getKeywords(item);

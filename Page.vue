@@ -30,9 +30,11 @@
 
 <script>
 import OutboundLink from './OutboundLink.vue'
+import navLayoutMixin from './navLayout.mixin'
 import { resolvePage, normalize, outboundRE, endingSlashRE, pageNormalize } from './util'
 
 export default {
+  mixins: [navLayoutMixin],
   components: { OutboundLink },
   props: ['sidebarItems'],
   computed: {
@@ -41,9 +43,9 @@ export default {
       if (prev === false) {
         return
       } else if (prev) {
-        return resolvePage(this.pagesWithoutRoot, prev, this.$route.path)
+        return resolvePage(this.pages, prev, this.$route.path)
       } else {
-        return resolvePrev(this.$route.path, this.pagesWithoutRoot)        
+        return resolvePrev(this.$route.path, this.pages)
       }
     },
     next () {
@@ -51,13 +53,10 @@ export default {
       if (next === false) {
         return
       } else if (next) {
-        return resolvePage(this.pagesWithoutRoot, next, this.$route.path)
+        return resolvePage(this.pages, next, this.$route.path)
       } else {
-        return resolveNext(this.$route.path, this.pagesWithoutRoot)
+        return resolveNext(this.$route.path, this.pages)
       }
-    },
-    pagesWithoutRoot() {
-      return pageNormalize(this.$site.pages, this.$site.themeConfig.nav)
     },
     title() {
       return this.$page.frontmatter.title

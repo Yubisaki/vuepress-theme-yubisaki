@@ -18,7 +18,10 @@
 </template>
 
 <script>
+import navLayoutMixin from './navLayout.mixin'
+
 export default {
+  mixins: [navLayoutMixin],  
   props: {
     pageItems: {
       default: () => []
@@ -47,8 +50,7 @@ export default {
   },
   computed: {
     pageSum() {
-      const perPage = this.$site.themeConfig['per_page'] || 5
-      return Math.ceil(this.pageItems.length / perPage)
+      return Math.ceil(this.pageItems.length / this.perPage)
     },
   },
   watch: {

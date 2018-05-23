@@ -1,5 +1,6 @@
 export const hashRE = /#.*$/
 export const indexRE = /(.+\/)index$/
+export const navLayoutRE = /(\/.+\/)(.*)$/g
 export const extRE = /\.(md|html)$/
 export const endingSlashRE = /\/$/
 export const outboundRE = /^(https?:|mailto:)/
@@ -62,12 +63,31 @@ export function getTitle (siteTitle, page) {
   return siteTitle
 }
 
+export function layoutsFromNav(navs) {
+
+  return navs.reduce((layouts, nav) => 
+    layouts.concat(nav.layout || []), [])
+}
+
+export function pageWithCustomLayout(pages, navs, layout) {
+  const navList = navs || [] 
+  const navLinks = navList.map(n => navsLinksNormalize(n.link))
+  const pagesWithoutRoot = pages
+    .filter(page => page.path !== '/' &&
+                    !~navLinks.indexOf(page.path) &&
+                    !isHidden(page) &&
+                    page.frontmatter.layoutTag === layout)
+  return pageSortByDate(pagesWithoutRoot)
+}
+
 // remove page in nav
 export function pageNormalize(pages, navs) {
+  const layouts = layoutsFromNav(navs)
   const navList = navs || []
   const navLinks = navList.map(n => navsLinksNormalize(n.link))
   const withoutRoot = pages
     .filter(page => page.path !== '/' && 
+                    !~layouts.indexOf(page.frontmatter.layoutTag) &&
                     !~navLinks.indexOf(page.path) &&
                     !isHidden(page))
   return pageSortByDate(withoutRoot)

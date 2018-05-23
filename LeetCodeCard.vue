@@ -1,18 +1,19 @@
 <template>
-  <div class="card article-card">
+  <div class="card leetcode-card">
     <h2 :class="headerOverviewClasses">
       <router-link 
         :to="this.info.path" :style="overrideStyle">{{ title }}</router-link>
     </h2>
-    <div v-html="info.excerpt">
+    <div v-if="isOverview">
+      {{ overview }}
     </div>
-    <img :src="isBanner" alt="overview" v-if="isBanner" class="article-banner" />
+    <img :src="isBanner" alt="overview" v-if="isBanner" class="leetcode-banner" />
   </div>
 </template>
 
 <script>
   export default {
-    name: 'article-card',
+    name: 'leetcode-card',
     props: {
       info: {
         type: Object,
@@ -22,6 +23,12 @@
     computed: {
       title() {
         return this.info.frontmatter.title || this.info.title
+      },
+      isOverview() {
+        return this.info.frontmatter.description
+      },
+      overview() {
+        return this.info.frontmatter.description
       },
       headerOverviewClasses() {
         return (this.isOverview || this.isBanner) ? 'overview' : ''
@@ -41,25 +48,22 @@
 <style lang="stylus">
   @require './styles/config'
 
-  .article-card
+  .leetcode-card
     position relative
-    padding 16px 20px
+    padding 16px 10px
+    margin-right 10px
+    width calc(33% - 10px)
+    height 210px
+    float left
     h2:not(.overview)
       border: 0
-    img // article card img css hack
-      display block
-      max-width 100%
-    a[class*="header-anchor"] // article card '#' css hack
-      display none
-    pre[class*="language-"] // article card language class css hack
-      position relative
-      &:before
-        position absolute
-        top 0.8em
-        right 1em
-        font-size 0.75rem;
-        color: rgba(255, 255, 255, 0.4)
 
-  .article-banner
+  .leetcode-banner
     width 80%
+
+  @media (max-width ($MQNarrow + 1px))
+    .leetcode-card
+      margin-right 0
+      width 100%
+      height auto
 </style>
