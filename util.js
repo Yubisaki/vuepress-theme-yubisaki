@@ -64,19 +64,26 @@ export function getTitle (siteTitle, page) {
 }
 
 export function layoutsFromNav(navs) {
-
+  
   return navs.reduce((layouts, nav) => 
     layouts.concat(nav.layout || []), [])
+}
+
+export function excludeFeature (page) {
+  return (!page.frontmatter.date || 
+          +new Date(page.frontmatter.date) <= +new Date())
 }
 
 export function pageWithCustomLayout(pages, navs, layout) {
   const navList = navs || [] 
   const navLinks = navList.map(n => navsLinksNormalize(n.link))
   const pagesWithoutRoot = pages
-    .filter(page => page.path !== '/' &&
-                    !~navLinks.indexOf(page.path) &&
-                    !isHidden(page) &&
-                    page.frontmatter.layoutTag === layout)
+    .filter(page => page.path !== '/' && // exclude root
+                    excludeFeature(page) && // exclude page.date > current time
+                    !~navLinks.indexOf(page.path) && // nav link
+                    !isHidden(page) && // page.frontmatter.hidden
+                    page.frontmatter.layoutTag === layout // layout tag
+            ) 
   return pageSortByDate(pagesWithoutRoot)
 }
 
@@ -87,9 +94,11 @@ export function pageNormalize(pages, navs) {
   const navLinks = navList.map(n => navsLinksNormalize(n.link))
   const withoutRoot = pages
     .filter(page => page.path !== '/' && 
+                    excludeFeature(page) && // exclude page.date > current time
                     !~layouts.indexOf(page.frontmatter.layoutTag) &&
                     !~navLinks.indexOf(page.path) &&
-                    !isHidden(page))
+                    !isHidden(page)
+            )
   return pageSortByDate(withoutRoot)
 }
 
