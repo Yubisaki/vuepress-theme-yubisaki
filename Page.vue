@@ -1,11 +1,13 @@
 <template>
   <div class="page card">
-    <h1 v-if="title" 
-      class="page-title" 
-      :style="overrideStyle">
-      {{ title }}
-    </h1>
-    <span class="page-timestamp">{{ createTime }}</span>
+    <div class="content-header">
+      <h1 v-if="title" 
+        class="page-title" 
+        :style="overrideStyle">
+        {{ title }}
+      </h1>
+      <span class="page-timestamp">{{ createTime }}</span>      
+    </div>
     <Content :custom="false"/>
     <div class="content edit-link" v-if="editLink">
       <a :href="editLink" target="_blank" rel="noopener noreferrer">{{ editLinkText }}</a>
@@ -69,7 +71,7 @@ export default {
       return date.Format(format)
     },
     overrideStyle() {
-      const { accentColor } = this.$site.themeConfig
+      const accentColor = this.$site.themeConfig['accentColor']
       return accentColor ? { color: accentColor } : {}
     },
     editLink () {
@@ -137,12 +139,10 @@ function find(path, pages, offset) {
 
 .page-title
   margin-bottom -2rem
-  padding 0 2.5rem
 
 .page-timestamp
   display block
   font-size 14px
-  padding 0 2.5rem
   margin-top 2.5rem
 
 .edit-link.content
