@@ -45,7 +45,6 @@ import ArticleGroup from './ArticleGroup.vue'
 import LeetCodeGroup from './LeetCodeGroup.vue'
 import Pagation from './Pagation.vue'
 import navLayoutMixin from './navLayout.mixin'
-import { pathToComponentName } from "@app/util";
 import { resolveSidebarItems, getTitle } from "./util";
 
 export default {
@@ -159,10 +158,7 @@ export default {
     nprogress.configure({ showSpinner: false });
 
     this.$router.beforeEach((to, from, next) => {
-      if (
-        to.path !== from.path &&
-        !Vue.component(pathToComponentName(to.path))
-      ) {
+      if (to.path !== from.path && !Vue.component(to.name)) {
         nprogress.start();
       }
       next();
