@@ -45,9 +45,9 @@ export default {
       if (prev === false) {
         return
       } else if (prev) {
-        return resolvePage(this.pages, prev, this.$route.path)
+        return resolvePage(this.pages, prev, this.$route.name)
       } else {
-        return resolvePrev(this.$route.path, this.pages)
+        return resolvePrev(this.$route.name, this.pages)
       }
     },
     next () {
@@ -55,9 +55,9 @@ export default {
       if (next === false) {
         return
       } else if (next) {
-        return resolvePage(this.pages, next, this.$route.path)
+        return resolvePage(this.pages, next, this.$route.name)
       } else {
-        return resolveNext(this.$route.path, this.pages)
+        return resolveNext(this.$route.name, this.pages)
       }
     },
     title() {
@@ -111,18 +111,20 @@ export default {
   },
 }
 
-function resolvePrev(path, pages) {
-  return find(path, pages, -1)
+function resolvePrev(name, pages) {
+  return find(name, pages, -1)
 }
 
-function resolveNext(path, pages) {
-  return find(path, pages, 1)
+function resolveNext(name, pages) {
+  return find(name, pages, 1)
 }
 
-function find(path, pages, offset) {
+function find(name, pages, offset) {
+  
   for(let i = 0; i < pages.length; i++) {
-    if(pages[i].path === path) {
-      if(i === 0 || i + 1 === pages.length) return false
+    if(pages[i].key === name) {
+      if(offset < 0 && i === 0) return false
+      if(offset > 0 && i === pages.length - 1) return false
       const page = pages[i + offset]
       return page.path === '/' ? false : page
     }
