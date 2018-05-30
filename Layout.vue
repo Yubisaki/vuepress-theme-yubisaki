@@ -24,7 +24,7 @@
           <!-- pagation selector -->
           <Pagation v-if="isRoot || isNavLayout" 
             :page-items="pages" 
-            @change="page => currentPage = page" /> 
+            @change="page => currentPage = page" />
         </div>
         <ToolGroup v-if="!isNoToolGroup" />
       </div>
@@ -106,7 +106,7 @@ export default {
         {
           "no-navbar": !this.shouldShowNavbar,
           "sidebar-open": this.isSidebarOpen,
-          "no-sidebar": !this.shouldShowSidebar
+          "no-sidebar": !this.shouldShowSidebar,
         },
         userPageClass
       ];

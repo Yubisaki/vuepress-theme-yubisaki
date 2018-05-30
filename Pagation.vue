@@ -43,9 +43,9 @@ export default {
       this.currentPage = this.currentPage + 1
     },
     hightlightCurrentPage(pageNum) {
-      return [{
+      return {
         'pagation-current': pageNum === this.currentPage
-      }]
+      }
     },
   },
   computed: {

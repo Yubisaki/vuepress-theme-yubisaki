@@ -2,7 +2,7 @@
   <div class="card article-card">
     <h2 :class="headerOverviewClasses">
       <router-link 
-        :to="this.info.path" :style="overrideStyle">{{ title }}</router-link>
+        :to="info.path" :style="overrideStyle">{{ title }}</router-link>
     </h2>
     <div v-html="info.excerpt">
     </div>
@@ -24,7 +24,9 @@
         return this.info.frontmatter.title || this.info.title
       },
       headerOverviewClasses() {
-        return (this.isOverview || this.isBanner) ? 'overview' : ''
+        return {
+          'overview': this.info.excerpt
+        }
       },
       overrideStyle() {
         const { accentColor } = this.$site.themeConfig

@@ -2,10 +2,9 @@
   <div class="card leetcode-card">
     <h2 :class="headerOverviewClasses">
       <router-link 
-        :to="this.info.path" :style="overrideStyle">{{ title }}</router-link>
+        :to="info.path" :style="overrideStyle">{{ title }}</router-link>
     </h2>
-    <div v-if="isOverview">
-      {{ overview }}
+    <div v-html="info.excerpt">
     </div>
     <img :src="isBanner" alt="overview" v-if="isBanner" class="leetcode-banner" />
   </div>
@@ -24,14 +23,10 @@
       title() {
         return this.info.frontmatter.title || this.info.title
       },
-      isOverview() {
-        return this.info.frontmatter.description
-      },
-      overview() {
-        return this.info.frontmatter.description
-      },
       headerOverviewClasses() {
-        return (this.isOverview || this.isBanner) ? 'overview' : ''
+        return {
+          'overview': this.info.excerpt
+        }
       },
       overrideStyle() {
         const { accentColor } = this.$site.themeConfig
