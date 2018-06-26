@@ -44,7 +44,7 @@ import ToolGroup from "./ToolGroup.vue";
 import ArticleGroup from './ArticleGroup.vue'
 import LeetCodeGroup from './LeetCodeGroup.vue'
 import Pagation from './Pagation.vue'
-import navLayoutMixin from './navLayout.mixin'
+import navLayoutMixin from './lib/navLayout.mixin'
 import { resolveSidebarItems, getTitle } from "./util";
 
 export default {

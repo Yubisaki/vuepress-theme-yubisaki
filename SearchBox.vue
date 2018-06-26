@@ -30,7 +30,7 @@
 
 <script>
 import { pageNormalize } from "./util";
-import navLayoutMixin from './navLayout.mixin'
+import navLayoutMixin from './lib/navLayout.mixin'
 
 export default {
   mixins: [navLayoutMixin],  
