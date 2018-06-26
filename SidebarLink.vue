@@ -1,5 +1,5 @@
 <script>
-import { isActive, hashRE, groupHeaders } from './util'
+import { isActive, hashRE, groupHeaders } from './lib/util'
 
 export default {
   functional: true,

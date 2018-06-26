@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import { pageNormalize } from "./util";
+import { pageNormalize } from "./lib/util";
 import navLayoutMixin from './lib/navLayout.mixin'
 
 export default {

@@ -45,7 +45,7 @@ import ArticleGroup from './ArticleGroup.vue'
 import LeetCodeGroup from './LeetCodeGroup.vue'
 import Pagation from './Pagation.vue'
 import navLayoutMixin from './lib/navLayout.mixin'
-import { resolveSidebarItems, getTitle } from "./util";
+import { resolveSidebarItems, getTitle } from "./lib/util";
 
 export default {
   mixins: [navLayoutMixin],

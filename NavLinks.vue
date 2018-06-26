@@ -23,7 +23,7 @@
 <script>
 import OutboundLink from './OutboundLink.vue'
 import DropdownLink from './DropdownLink.vue'
-import { isActive, resolveNavLinkItem } from './util'
+import { isActive, resolveNavLinkItem } from './lib/util'
 import NavLink from './NavLink.vue'
 
 export default {

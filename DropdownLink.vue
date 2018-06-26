@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import { isExternal, ensureExt } from './util'
+import { isExternal, ensureExt } from './lib/util'
 import NavLink from './NavLink.vue'
 
 export default {

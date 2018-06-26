@@ -19,7 +19,7 @@
 import SidebarGroup from './SidebarGroup.vue'
 import SidebarLink, { groupHeaders } from './SidebarLink.vue'
 import NavLinks from './NavLinks.vue'
-import { isActive, resolveSidebarItems } from './util'
+import { isActive, resolveSidebarItems } from './lib/util'
 
 export default {
   components: { SidebarGroup, SidebarLink, NavLinks },
