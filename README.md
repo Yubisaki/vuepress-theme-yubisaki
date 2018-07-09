@@ -12,7 +12,7 @@ yarn add vuepress-theme-yubisaki -S
 
 ## Article
 
-在 `markdown` 文件头部加上以下内容 (已提供脚本[yubisaki-sehll](https://github.com/Bloss/yubisaki-shell)生成)
+在 `markdown` 文件头部加上以下内容 (已提供脚本[yubisaki-shell](https://github.com/Bloss/yubisaki-shell)生成)
 
 ```yaml
 title: 文章标题
