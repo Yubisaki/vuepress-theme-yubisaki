@@ -28,6 +28,7 @@
         </div>
         <ToolGroup v-if="!isNoToolGroup" />
       </div>
+      <SWUpdatePopup :updateEvent="swUpdateEvent" />
     </div>
     <div class="background-mask" :style="wrapClasses"></div>
   </div>
@@ -44,21 +45,33 @@ import ToolGroup from "./ToolGroup.vue";
 import ArticleGroup from './ArticleGroup.vue'
 import LeetCodeGroup from './LeetCodeGroup.vue'
 import Pagation from './Pagation.vue'
+import SWUpdatePopup from './SWUpdatePopup.vue'
 import navLayoutMixin from './lib/navLayout.mixin'
 import { resolveSidebarItems, getTitle } from "./lib/util";
 
 export default {
   mixins: [navLayoutMixin],
-  components: { Activity, Page, Sidebar, Navbar, ToolGroup, ArticleGroup, LeetCodeGroup, Pagation },
+  components: { 
+    Activity, 
+    Page, 
+    Sidebar,
+    Navbar, 
+    ToolGroup, 
+    ArticleGroup, 
+    LeetCodeGroup, 
+    Pagation,
+    SWUpdatePopup
+  },
   data() {
     return {
       isSidebarOpen: false,
-      currentPage: 1
+      currentPage: 1,
+      swUpdateEvent: null
     };
   },
   computed: {
     isRoot() {
-      return this.$route.path === '/'
+      return this.$route.path === (this.$site.base || '/');
     },
     isNoToolGroup() {
       return this.$page.frontmatter.layout || this.$page.frontmatter.activity
@@ -131,23 +144,6 @@ export default {
     }
   },
   mounted() {
-    // update title / meta tags
-    this.currentMetaTags = [];
-    const updateMeta = () => {
-      document.title = getTitle(this.$title, this.$page);
-      document.documentElement.lang = this.$lang;
-      const meta = [
-        {
-          name: "description",
-          content: this.$description
-        },
-        ...(this.$page.frontmatter.meta || [])
-      ];
-      this.currentMetaTags = updateMetaTags(meta, this.currentMetaTags);
-    };
-    this.$watch("$page", updateMeta);
-    updateMeta();
-
     // when swtich tab, change the current page
     const updateCurPage = () => {
       this.currentPage = 1
@@ -168,10 +164,8 @@ export default {
       nprogress.done();
       this.isSidebarOpen = false;
     });
-  },
 
-  beforeDestroy() {
-    updateMetaTags(null, this.currentMetaTags);
+    this.$on('sw-updated', this.onSWUpdated);
   },
   methods: {
     toggleSidebar(to) {
@@ -194,27 +188,12 @@ export default {
           this.toggleSidebar(false);
         }
       }
+    },
+    onSWUpdated(e) {
+      this.swUpdateEvent = e;
     }
   }
 };
-
-function updateMetaTags(meta, current) {
-  if (current) {
-    current.forEach(c => {
-      document.head.removeChild(c);
-    });
-  }
-  if (meta) {
-    return meta.map(m => {
-      const tag = document.createElement("meta");
-      Object.keys(m).forEach(key => {
-        tag.setAttribute(key, m[key]);
-      });
-      document.head.appendChild(tag);
-      return tag;
-    });
-  }
-}
 </script>
 
 <style src="prismjs/themes/prism-tomorrow.css"></style>
