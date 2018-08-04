@@ -6,8 +6,17 @@
       <p class="description">
         {{ data.tagline }}
       </p>
-      <p class="action" v-if="data.actionText && data.actionLink">
-        <NavLink class="action-button" :item="actionLink"/>
+      <p>
+        <div v-if="data.data">
+          <span class="action" v-for="action in data.data.actions" v-if="data.data.actions && data.data.actions.length">
+            <NavLink class="action-button" :item="action"/>
+          </span>
+        </div>
+        <div v-else>
+          <span class="action" v-if="data.actionText && data.actionLink">
+            <NavLink class="action-button" :item="actionLink"/>
+          </span>
+        </div>
       </p>
     </div>
     <div class="features" v-if="data.features && data.features.length">
@@ -35,7 +44,7 @@ export default {
     actionLink () {
       return {
         link: this.data.actionLink,
-        text: this.data.actionText
+        text: this.data.actionText,
       }
     }
   }
