@@ -9,7 +9,7 @@
       <p>
         <div v-if="data.data">
           <span class="action" v-for="action in data.data.actions" v-if="data.data.actions && data.data.actions.length">
-            <NavLink class="action-button" :item="action"/>
+            <NavLink class="action-button" :item="action"/>&nbsp;
           </span>
         </div>
         <div v-else>
