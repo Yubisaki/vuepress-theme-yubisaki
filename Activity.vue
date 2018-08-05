@@ -7,8 +7,8 @@
         {{ data.tagline }}
       </p>
       <p>
-        <div v-if="data.data">
-          <span class="action" v-for="action in data.data.actions" v-if="data.data.actions && data.data.actions.length">
+        <div v-if="actions && actions.length">
+          <span class="action" v-for="action in actions">
             <NavLink class="action-button" :item="action"/>&nbsp;
           </span>
         </div>
@@ -40,6 +40,13 @@ export default {
   computed: {
     data () {
       return this.$page.frontmatter
+    },
+    actions () {
+      if (typeof this.$page.frontmatter.data !== 'undefined' && typeof this.$page.frontmatter.data.actions !== 'undefined') {
+        return this.$page.frontmatter.data.actions
+      } else {
+        return []
+      }
     },
     actionLink () {
       return {
