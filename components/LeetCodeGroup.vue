@@ -16,7 +16,7 @@
 </script>
 
 <style lang="stylus">
-    @require './styles/config'
+    @require '../styles/config'
 
     .leetcode-group
         margin-right 10px

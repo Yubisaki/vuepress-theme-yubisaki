@@ -16,7 +16,7 @@
 </script>
 
 <style lang="stylus">
-    @require './styles/config'
+    @require '../styles/config'
 
     .article-group
         margin-right 10px

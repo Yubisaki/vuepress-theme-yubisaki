@@ -39,9 +39,9 @@
   }
 </script>
 
-<style src="./styles/card.styl" lang="stylus"></style>
+<style src="../styles/card.styl" lang="stylus"></style>
 <style lang="stylus">
-  @require './styles/config'
+  @require '../styles/config'
 
   .article-card
     position relative

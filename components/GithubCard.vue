@@ -79,10 +79,10 @@ export default {
 };
 </script>
 
-<style src="./styles/transition.styl" lang="stylus"></style>
-<style src="./styles/card.styl" lang="stylus"></style>
+<style src="../styles/transition.styl" lang="stylus"></style>
+<style src="../styles/card.styl" lang="stylus"></style>
 <style lang="stylus">
-@import './styles/config.styl';
+@import '../styles/config.styl';
 
 .github-card {
   text-align: center;

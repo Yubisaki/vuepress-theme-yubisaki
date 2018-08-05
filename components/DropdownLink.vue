@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import { isExternal, ensureExt } from './lib/util'
+import { isExternal, ensureExt } from '../lib/util'
 import NavLink from './NavLink.vue'
 
 export default {
@@ -49,7 +49,7 @@ export default {
 </script>
 
 <style lang="stylus">
-@import './styles/config.styl'
+@import '../styles/config.styl'
 
 .dropdown-wrapper
   .dropdown-title

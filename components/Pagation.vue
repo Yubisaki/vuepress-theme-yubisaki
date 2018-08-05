@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import navLayoutMixin from './lib/navLayout.mixin'
+import navLayoutMixin from '../lib/navLayout.mixin'
 
 export default {
   mixins: [navLayoutMixin],  

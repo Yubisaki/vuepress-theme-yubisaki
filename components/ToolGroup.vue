@@ -14,4 +14,4 @@
     }
 </script>
 
-<style src='./styles/tool-group.styl' lang=stylus></style>
+<style src='../styles/tool-group.styl' lang=stylus></style>

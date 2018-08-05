@@ -23,7 +23,7 @@
 <script>
 import OutboundLink from './OutboundLink.vue'
 import DropdownLink from './DropdownLink.vue'
-import { isActive, resolveNavLinkItem } from './lib/util'
+import { isActive, resolveNavLinkItem } from '../lib/util'
 import NavLink from './NavLink.vue'
 
 export default {
@@ -85,7 +85,7 @@ export default {
 </script>
 
 <style lang="stylus">
-@import './styles/config.styl'
+@import '../styles/config.styl'
 
 .nav-links
   display inline-block

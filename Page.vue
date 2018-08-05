@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import OutboundLink from './OutboundLink.vue'
+import OutboundLink from './components/OutboundLink.vue'
 import navLayoutMixin from './lib/navLayout.mixin'
 import { resolvePage, normalize, outboundRE, endingSlashRE, pageNormalize } from './lib/util'
 

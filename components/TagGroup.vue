@@ -7,17 +7,17 @@
 </template>
 
 <script>
-    import navLayoutMixin from './lib/navLayout.mixin'
+    import navLayoutMixin from '../lib/navLayout.mixin'
     export default {
         mixins: [navLayoutMixin]
     }
 </script>
 
-<style src="./styles/transition.styl" lang="stylus"></style>
-<style src="./styles/card.styl" lang="stylus"></style>
+<style src="../styles/transition.styl" lang="stylus"></style>
+<style src="../styles/card.styl" lang="stylus"></style>
 
 <style lang="stylus">
-@import './styles/config.styl';
+@import '../styles/config.styl';
 
 .tag-card
   max-width $toolWidth;
