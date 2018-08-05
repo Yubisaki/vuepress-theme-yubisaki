@@ -1,7 +1,7 @@
 const Layout = () => import('../Layout');
-const NoutFound = () => import('../components/NotFound');
 
 const ROOT = '/';
+const TAGS = '/tags/:tagName?';
 
 const install = (Vue, { router, themeConfig }) => {
     const navs = navsLocale(themeConfig.nav);
@@ -12,6 +12,7 @@ const install = (Vue, { router, themeConfig }) => {
         .filter(route => route.redirect)
         .map(route => route.redirect);
 
+    // 为 nav 中没有 index.md 的目录 inject route
     navs.forEach(nav => {
         if (nav.link && !~navInRouter.indexOf(nav.link)) {
             routes.push({
@@ -24,7 +25,7 @@ const install = (Vue, { router, themeConfig }) => {
     });
 
     // inject root
-    if (!hasRoot(router)) {
+    if (!hasPath(router, ROOT)) {
         routes.push({
             path: ROOT,
             name: 'root',
@@ -32,19 +33,21 @@ const install = (Vue, { router, themeConfig }) => {
         })
     };
 
-    routes.push({
-        path: '/404.html',
-        name: 'notfound',
-        component: NoutFound
-    })
+    if (themeConfig.tags && !hasPath(router, TAGS)) {
+        routes.push({
+            path: TAGS,
+            component: Layout,
+            meta: { tag: true }
+        })
+    }
 
     router.addRoutes(routes);
 }
 
-const hasRoot = (router) => {
+const hasPath = (router, path) => {
     const routes = router.options.routes;
     for(let route of routes) {
-        if (route.path === ROOT) return true;
+        if (route.path === path) return true;
     }
     return false;
 }

@@ -19,6 +19,7 @@
           <ArticleGroup v-else-if="isRoot" :page-items="pageItems" />
           <!-- nav with layout list -->
           <ArticleGroup v-else-if="isNavLayout" :page-items="pageItems" />
+          <Tags v-else-if="isTag" />
           <!-- article page -->
           <Page v-else :sidebar-items="sidebarItems"/>
           <!-- pagation selector -->
@@ -46,6 +47,7 @@ import ArticleGroup from './components/ArticleGroup.vue'
 import LeetCodeGroup from './components/LeetCodeGroup.vue'
 import Pagation from './components/Pagation.vue'
 import SWUpdatePopup from './components/SWUpdatePopup.vue'
+import Tags from './components/Tags.vue'
 import navLayoutMixin from './lib/navLayout.mixin'
 import { resolveSidebarItems, getTitle } from "./lib/util";
 
@@ -60,6 +62,7 @@ export default {
     ArticleGroup, 
     LeetCodeGroup, 
     Pagation,
+    Tags,
     SWUpdatePopup
   },
   data() {
@@ -72,6 +75,9 @@ export default {
   computed: {
     isRoot() {
       return this.$route.meta.root;
+    },
+    isTag() {
+      return this.$route.meta.tag;
     },
     isNoToolGroup() {
       return this.$page.frontmatter.layout || this.$page.frontmatter.activity
@@ -144,8 +150,6 @@ export default {
     }
   },
   mounted() {
-    console.log('$$', this.$router.options.routes);
-    console.log(this.$route);
     // when swtich tab, change the current page
     const updateCurPage = () => {
       this.currentPage = 1
