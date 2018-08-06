@@ -12,12 +12,27 @@ yarn add vuepress-theme-yubisaki -S
 
 ## Article
 
+**渲染文章的概述**
+
+```
+## 标题一
+
+我是第一段落
+<!-- more -->
+我是第二段落
+```
+
+如上面的形式, 在 `md` 文件中添加 `<!-- more -->` 标签, 那么这个标签之前的内容就会被渲染到文章列表中为文章的内容概述
+
 在 `markdown` 文件头部加上以下内容 (已提供脚本[yubisaki-shell](https://github.com/Bloss/yubisaki-shell)生成)
 
 ```yaml
 title: 文章标题
-# 用于排序
+# 用于文章排序
 date: 2017-08-15 10:27:26
+tag: # 文章标签, 可以是 String 或者 Array
+  - js
+  - react
 # 一些 meta 标签, 可以用于被搜索引擎爬取
 meta:
   - name: description
@@ -26,28 +41,25 @@ meta:
     content: theme vuepress
 ```
 
-## 自定义 layout
+## tags
 
-在 `markdown` 文件头部加上以下内容
-
-```yaml
-heroText: Yubisaki # title
-activity: true # 使用自定义的 activity layout, 会收起右边的卡片栏
-hidden: true # 设置是否在文章列表中显示
-tagline: vuepress 博客主题 # 描述
-heroImage: /static/logo.png # logo
-# 参考官方默认主题的配置
-actionText: 了解一下 →  
-actionLink: /yubisaki/usage.html # action 链接
-features:
-  - title: 这是什么
-    details: 一个基于 vuepress 的博客主题, 它基于 vuepress 提供的默认主题
-  - title: 有哪些特点
-    details: 提供文章列表, 文章分页, 文章详情, github card, 自定义活动页 layout 等等功能
-  - title: TODO
-    details: 标签云, TAG ARCHIVE, 一些脚本, 一些 开箱即用的layout
-footer: by stickmy
+```js
+module.exports = {
+  themeConfig: {
+    tags: true,
+    nav: [
+      { text: 'TAGS', link: '/tags/', tags: true }
+    ]
+  }
+}
 ```
+
+如上面的配置, 可以开启 `tags` 标签功能, 然后在导航栏上加入一个 `TAGS` 导航并且指定 `tags` 属性为 `true`, 表明这是一个标签导航, 这样主题可以为其开启标签的功能, 看起来是这样的:
+
+![](https://blog-1252181333.cossh.myqcloud.com/blog/180137.png)
+
+![](https://blog-1252181333.cossh.myqcloud.com/blog/180218.png)
+
 
 ## 配置
 
@@ -83,6 +95,7 @@ module.exports = {
   themeConfig: {
     // 博客背景图片
     background: `/background/path`,
+    tags: true,
     // github card
     github: 'github username',
     // 博客的 logo
@@ -95,12 +108,37 @@ module.exports = {
     date_format: 'yyyy-MM-dd',
     // 和 vuepress 默认主题一样, 定制导航栏上的链接
     nav: [
-        { text: 'HOME', link: '/' },
+        { text: 'HOME', link: '/', root: true }, // 指定这是博客文章的 root 目录
+        { text: 'TAGS', link: '/tags/', tags: true }, // 指定这是 tags 目录
         { text: 'GITHUB', link: 'https://github.com/bloss' },
         { text: '关于我', link: '/about/' }, 
     ]
   }
 }
+```
+
+
+## 自定义 layout
+
+在 `markdown` 文件头部加上以下内容
+
+```yaml
+heroText: Yubisaki # title
+activity: true # 使用自定义的 activity layout, 会收起右边的卡片栏
+hidden: true # 设置是否在文章列表中显示
+tagline: vuepress 博客主题 # 描述
+heroImage: /static/logo.png # logo
+# 参考官方默认主题的配置
+actionText: 了解一下 →  
+actionLink: /yubisaki/usage.html # action 链接
+features:
+  - title: 这是什么
+    details: 一个基于 vuepress 的博客主题, 它基于 vuepress 提供的默认主题
+  - title: 有哪些特点
+    details: 提供文章列表, 文章分页, 文章详情, github card, 自定义活动页 layout 等等功能
+  - title: TODO
+    details: 标签云, TAG ARCHIVE, 一些脚本, 一些 开箱即用的layout
+footer: by stickmy
 ```
 
 ## 开发, 部署
