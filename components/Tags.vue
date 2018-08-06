@@ -4,6 +4,7 @@
         <div class="tag-group">
             <Tag v-for="tag in Object.keys($tags)"
                 :tag="$tags[tag]"
+                :highlight="true"
                 :slug="tag"
                 :key="tag">
                 #{{tag}} {{$tags[tag].length}}

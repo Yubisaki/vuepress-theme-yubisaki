@@ -15,8 +15,10 @@ const install = (Vue, { router, pages, themeConfig }) => {
         if (page.frontmatter && page.frontmatter.tag) {
             const tag = page.frontmatter.tag;
             if (typeof tag === 'string') {
+                page.tags = [tag];
                 insertTag(tagMap, tag, page.key);
             } else {
+                page.tags = tag;
                 tag.forEach(t => insertTag(tagMap, t, page.key));
             }
         }
