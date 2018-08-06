@@ -1,8 +1,10 @@
 const Layout = () => import('../Layout');
 
-const ROOT = '/';
-const TAGS = '/tags/:tagName?';
-
+/**
+ * 注入路由
+ * @param {*} Vue 
+ * @param {*} param1 
+ */
 const install = (Vue, { router, themeConfig }) => {
     const navs = navsLocale(themeConfig.nav);
     const routes = [];
@@ -12,30 +14,24 @@ const install = (Vue, { router, themeConfig }) => {
         .filter(route => route.redirect)
         .map(route => route.redirect);
 
-    // 为 nav 中没有 index.md 的目录 inject route
+    // 注入 root
     navs.forEach(nav => {
-        if (nav.link && !~navInRouter.indexOf(nav.link)) {
+        if (nav.root &&
+            nav.link &&
+            !~navInRouter.indexOf(nav.link)) {
             routes.push({
                 path: nav.link,
                 component: Layout,
                 name: `nav-${nav.text}`,
-                meta: { root: nav.root || false }
+                meta: { root: true }
             })
         }
     });
 
-    // inject root
-    if (!hasPath(router, ROOT)) {
+    // 注入 tags
+    if (Vue.options.tags.useTag) {
         routes.push({
-            path: ROOT,
-            name: 'root',
-            component: Layout
-        })
-    };
-
-    if (themeConfig.tags && !hasPath(router, TAGS)) {
-        routes.push({
-            path: TAGS,
+            path: `${Vue.options.tags.path}:tagName?`,
             component: Layout,
             meta: { tag: true }
         })

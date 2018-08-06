@@ -74,7 +74,7 @@ export default {
   },
   computed: {
     isRoot() {
-      return this.$route.meta.root;
+      return this.$route.meta.root || this.$route.path === '/';
     },
     isTag() {
       return this.$route.meta.tag;
