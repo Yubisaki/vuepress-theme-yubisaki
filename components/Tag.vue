@@ -1,7 +1,7 @@
 <template>
     <router-link :to="to" exact>
         <span tabindex="0" 
-            :class="{'tag': true, 'tag-active': slug === tagName}">
+            :class="{'tag-wrap': true, 'tag-active': slug === tagName}">
             <span class="tag-inner">
                 <slot></slot>
             </span>
@@ -17,14 +17,14 @@ export default {
             return this.$route.params.tagName;
         },
         to() {
-            return `/tags/${this.slug || ''}`
+            return `${this.$tagOptions.path}${this.slug || ''}`
         }
     }
 }
 </script>
 
 <style lang="stylus">
-.tag
+.tag-wrap
     cursor pointer
     font-weight 400
     background #e0e0e0

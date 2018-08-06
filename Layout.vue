@@ -19,6 +19,7 @@
           <ArticleGroup v-else-if="isRoot" :page-items="pageItems" />
           <!-- nav with layout list -->
           <ArticleGroup v-else-if="isNavLayout" :page-items="pageItems" />
+          <!-- tags -->
           <Tags v-else-if="isTag" />
           <!-- article page -->
           <Page v-else :sidebar-items="sidebarItems"/>
@@ -74,7 +75,7 @@ export default {
   },
   computed: {
     isRoot() {
-      return this.$route.meta.root;
+      return this.$route.meta.root || this.$route.path === '/';
     },
     isTag() {
       return this.$route.meta.tag;

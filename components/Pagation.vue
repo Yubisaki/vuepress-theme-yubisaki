@@ -34,6 +34,7 @@ export default {
   },
   methods: {
     changeCurrentPage(pageNum) {
+      window.scrollTo(0, 0);
       this.currentPage = pageNum
     },
     prevPage() {
