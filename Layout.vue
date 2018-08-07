@@ -197,6 +197,7 @@ export default {
       }
     },
     onSWUpdated(e) {
+      console.log('pwa update: ', e);
       this.swUpdateEvent = e;
     }
   }

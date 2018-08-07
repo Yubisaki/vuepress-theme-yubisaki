@@ -44,6 +44,7 @@ export default {
     reload () {
       if (this.updateEvent) {
         this.updateEvent.skipWaiting().then(() => {
+          console.log('PWA 正在开启新的 serviceWorker');
           location.reload(true)
         })
         this.updateEvent = null
