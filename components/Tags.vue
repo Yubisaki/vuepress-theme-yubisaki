@@ -30,6 +30,12 @@ export default {
             currentPage: 1
         }
     },
+    mounted() {
+        const updateCurPage = () => {
+            this.currentPage = 1
+        }
+        this.$watch('pageWithSpecTag', updateCurPage)
+    },
     components: { Tag, ArticleGroup, Pagation },
     computed: {
         overrideStyle() {
