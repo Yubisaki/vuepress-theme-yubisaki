@@ -23,6 +23,7 @@ export default {
         };
     },
     mounted() {
+        window.onresize = this.resize;
         this.$nextTick(() => {
             this.play();
             window.requestAnimationFrame(this.update);
@@ -97,6 +98,17 @@ export default {
 
             // Add our canvas to the page
             document.body.appendChild(this.particleCanvas);
+        },
+        resize() {
+            if (!this.particleCanvas) return;
+            this.particleCanvas.width = 
+                window.innerWidth || 
+                document.documentElement.clientWidth || 
+                document.body.clientWidth;
+            this.particleCanvas.height = 
+                window.innerHeight || 
+                document.documentElement.clientHeight || 
+                document.body.clientHeight;
         },
         update() {
             // Clear out the old particles
