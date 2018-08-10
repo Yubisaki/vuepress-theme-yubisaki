@@ -14,5 +14,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "wuwaki",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "html2canvas": "^1.0.0-alpha.12"
+  }
 }

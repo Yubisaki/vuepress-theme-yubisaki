@@ -7,7 +7,9 @@
         {{ data.tagline }}
       </p>
       <p class="action" v-if="data.actionText && data.actionLink">
-        <NavLink class="action-button" :item="actionLink"/>
+        <Particle>
+          <AnimationButton class="action-button" :item="actionLink"/>
+        </Particle>
       </p>
     </div>
     <div class="features" v-if="data.features && data.features.length">
@@ -24,10 +26,11 @@
 </template>
 
 <script>
-import NavLink from '../components/NavLink.vue'
+import AnimationButton from '../components/AnimationButton.vue';
+import Particle from '../animation/particleBoom.vue';
 
 export default {
-  components: { NavLink },
+  components: { Particle, AnimationButton },
   computed: {
     data () {
       return this.$page.frontmatter
@@ -51,13 +54,17 @@ export default {
   margin 0px auto
   .hero
     text-align center
+    display flex
+    flex-direction column
+    align-items center
     img
       max-height 280px
       display block
       margin 3rem auto 1.5rem
     h1
       font-size 3rem
-    h1, .description, .action
+      margin 0
+    .description
       margin 1.8rem auto
     .description
       max-width 35rem
