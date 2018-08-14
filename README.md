@@ -4,42 +4,66 @@
 
 [Yubisaki-theme](https://wuwaki.me/yubisaki/)
 
-## USAGE
+> This is a english port of original vuepress yubisaki theme only. I Don't do much active development in the code beside some personal stuff I need for my blog. Please use original repo for issues and help
+
+## Installation
 
 ```bash
 yarn add vuepress-theme-yubisaki -S
 ```
+or with npm
+```bash
+npm install vuepress-theme-yubisaki --save-dev
+```
 
 ## Article
 
-**渲染文章的概述**
+**Render an overview of the article**
+To generate a preview of the post on the cards, use excerpt by adding `<!-- more -->` after the paragraph in your post.
 
 ```
-## 标题一
-
-我是第一段落
+## Title one -
+I am the first paragraph
 <!-- more -->
-我是第二段落
+I am the second paragraph
 ```
 
-如上面的形式, 在 `md` 文件中添加 `<!-- more -->` 标签, 那么这个标签之前的内容就会被渲染到文章列表中为文章的内容概述
+As in the above form, add the `<!-- more -->` tag to the `md` file, then the content before this tag will be rendered into the article list.
 
-在 `markdown` 文件头部加上以下内容 (已提供脚本[yubisaki-shell](https://github.com/Bloss/yubisaki-shell)生成)
+
+## Post meta-data
+Use [yubisaki shell](https://github.com/Bloss/yubisaki-shell) to generate a new post with automatic date-time stamp, title and metadata etc. this helps the cards to sort according to date automatically, also filter the posts by tags etc.
+
+install shell with 
+```bash
+yarn global add yubisaki-shell
+```
+and then from your project's root dir, run
+```bash
+yubisaki post -p <post-name> --page README.md
+```
+like if your post is named javascript, just run
+```bash
+yubisaki post -p javascript --page README.md
+```
+
+this will create a folder called javascript and a `README.md` file in it with required data automatically. You can then make changes to this file like changing the title and metadata, tags etc.
 
 ```yaml
-title: 文章标题
-# 用于文章排序
+title: Article title
+# date is used for article sorting
 date: 2017-08-15 10:27:26
-tag: # 文章标签, 可以是 String 或者 Array
+tag: # Article tag, can be a String or an Array
   - js
   - react
-# 一些 meta 标签, 可以用于被搜索引擎爬取
+# Meta tags that can be used to crawl by search engines
 meta:
   - name: description
-    content: 一些描述
-  - name: keywords # keywords 标签, 在页内搜索时会被查询
+    content: Some description about your post
+  - name: keywords # keywords Tags, will be queried when searching within pages
     content: theme vuepress
 ```
+To let the theme filter by tags, add the following information alongside your previous themeConfig in `config.js` inside `.vuepress` folder
 
 ## tags
 
@@ -54,20 +78,20 @@ module.exports = {
 }
 ```
 
-如上面的配置, 可以开启 `tags` 标签功能, 然后在导航栏上加入一个 `TAGS` 导航并且指定 `tags` 属性为 `true`, 表明这是一个标签导航, 这样主题可以为其开启标签的功能, 看起来是这样的:
+the above configuration let's theme know that `TAGS` field in the navbar is specifically for browsing tags from posts. When you visit the above path, it looks like following:
 
 ![](https://blog-1252181333.cossh.myqcloud.com/blog/180137.png)
 
 ![](https://blog-1252181333.cossh.myqcloud.com/blog/180218.png)
 
 
-## 配置
+## Configuration
 
-这边放上我的博客的配置文件: `.vuepress/config.js`, 以供大家参考
+For your reference, I have put the configuration of my blog (`.vuepress/config.js`) here: 
 
 ```js
 module.exports = {
-  // 启用自定义的主题
+  // Enable custom themes
   theme: 'yubisaki',
   title: 'Yubisaki',
   description: 'vuepress theme Yubisaki',
@@ -82,84 +106,96 @@ module.exports = {
   // fuck IE
   evergreen: true,
   markdown: {
-    // markdown-it-anchor 的选项
+    // markdown-it-anchor options
     anchor: { permalink: true },
-    // markdown-it-toc 的选项
+    // markdown-it-toc options
     toc: { includeLevel: [1, 2] },
     config: md => {
-      md.use(require('markdown-it-task-lists')) // 一个 checkbox 的 TODO List 插件
-        .use(require('markdown-it-imsize'), { autofill: true }) // 支持自定义 md 图片大小 ![](http://test.png =200x200)
+      md.use(require('markdown-it-task-lists')) // a checkbox TODO List plugin
+        .use(require('markdown-it-imsize'), { autofill: true }) // Support for custom md image size ![test](image.png =100x200)
     }
   },
-  // 主题的一些配置
+  // Yubisaki theme specific configuration
   themeConfig: {
-    // 博客背景图片
-    background: `/background/path`,
+    // Blog background image
+    background: '/background/path',
     tags: true,
     // github card
     github: 'github username',
-    // 博客的 logo
+    // favicon image (logo)
     logo: '/logo/path',
-    // 定制文章标题颜色
+    // Custom article title color
     accentColor: '#ac3e40',
-    // 每页显示的文章数量
+    // Number of articles displayed per page
     per_page: 5,
-    // 创建文章的时间格式, 不设则不显示 可选 [yyyy-MM-dd HH:mm:ss]
+    // The time format for creating an article. If not set, it will not be displayed. Optional [yyyy-MM-dd HH:mm:ss]
     date_format: 'yyyy-MM-dd',
-    // 和 vuepress 默认主题一样, 定制导航栏上的链接
+    // customize the links on the navigation bar
     nav: [
-        { text: 'HOME', link: '/', root: true }, // 指定这是博客文章的 root 目录
-        { text: 'TAGS', link: '/tags/', tags: true }, // 指定这是 tags 目录
+        { text: 'HOME', link: '/', root: true }, // Specify this as the root directory of the blog post
+        { text: 'TAGS', link: '/tags/', tags: true }, // Specify the tags directory
         { text: 'GITHUB', link: 'https://github.com/bloss' },
-        { text: '关于我', link: '/about/' }, 
+        { text: 'about me', link: '/about/' }, 
     ]
   }
 }
 ```
 
 
-## 自定义 layout
+## customize the layout
 
-在 `markdown` 文件头部加上以下内容
+Besides the basic yaml config generated by yubisaki-shell, you can add the following information to customize the layout as you want:
+
+to customize the layout, add the following to the header of the `markdown` file
 
 ```yaml
 heroText: Yubisaki # title
-activity: true # 使用自定义的 activity layout, 会收起右边的卡片栏
-hidden: true # 设置是否在文章列表中显示
-tagline: vuepress 博客主题 # 描述
+activity: true # Use a custom activity layout that will collapse the card bar on the right
+hidden: true # Set whether to display in the article list
+tagline: Vuepress blog theme # description
 heroImage: /static/logo.png # logo
-# 参考官方默认主题的配置
-actionText: 了解一下 →  
-actionLink: /yubisaki/usage.html # action 链接
+# Refer to the configuration of the official default theme for service static files
+actionText: Learn about → 
+actionLink: /yubisaki/usage.html
 features:
-  - title: 这是什么
-    details: 一个基于 vuepress 的博客主题, 它基于 vuepress 提供的默认主题
-  - title: 有哪些特点
-    details: 提供文章列表, 文章分页, 文章详情, github card, 自定义活动页 layout 等等功能
+  - title: what is this
+    details: A vuepress-based blog theme based on the default theme provided by vuepress
+  - title: What are the characteristics?
+    details: Provide article list, article pagination, article details, github card, custom event page layout, etc.
   - title: TODO
-    details: 标签云, TAG ARCHIVE, 一些脚本, 一些 开箱即用的layout
+    details: Tag cloud, TAG ARCHIVE, some scripts, some out of the box layout
 footer: by stickmy
 ```
 
-## 开发, 部署
+## Development, deployment
 
-**在 docs 目录下, 务必放一个 markdown 文件, 用于生成根路径路由, 它可以是一个空文件**
+**In the docs directory (or the root of your project), be sure to put a markdown file called README.md for generating the root path, which can be an empty file**
 
-`project/package.json`:
+You can use the following scripts to run the vuepress commands or you can run them directly, whichever you prefer
+
+`package.json`:
 
 ```js
 {
   "scripts": {
-    "docs:dev": "vuepress dev docs",
-    "docs:build": "vuepress build docs"
+    "docs:dev": "vuepress dev {dirName}",
+    "docs:build": "vuepress build {dirName}"
   }
 }
 ```
+If you haven't installed vuepress gloablly, these scripts will be helpful to find the vuepress binaries from `node_modules/.bin` directory and execute them on shell. to execute above scripts, run:
+```bash
+npm run docs:dev
+```
 
-利用 `npm script` 去开发, 运行. 它会将 `node_modules/.bin` 加入到 `node shell` 的 `PATH` 变量中, 这样我们就可以找到主题的正确路径
+or 
+```bash
+npm run docs:build
+```
+Accordingly.
 
 ## TODO
 
-- 标签云
-- 文章分类
-- 更多类似 github card 的卡片
+- Tag Cloud
+- Article classification
+- More cards like github card
