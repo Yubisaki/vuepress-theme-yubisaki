@@ -1,7 +1,7 @@
 import { pageNormalize } from '../lib/util';
 
 /**
- * 提取文章的 tags
+ * Extract the tags of the article
  * @param {*} Vue 
  * @param {*} param1 
  */

@@ -1,13 +1,13 @@
 <template>
   <div class="card article-card">
-    <!-- 文章标题 -->
+    <!-- Article title -->
     <h2 :class="headerOverviewClasses">
       <router-link class="art-header-link"
         :to="info.path" :style="overrideStyle">{{ title }}</router-link>
     </h2>
-    <!-- 文章概述 -->
+    <!-- Article overview -->
     <div v-html="info.excerpt"></div>
-    <!-- tag 区域 -->
+    <!-- Tag area -->
     <div v-if="info.tags">
       <div class="theme-line article-card-line"></div>
       <tag v-for="tag in info.tags" 

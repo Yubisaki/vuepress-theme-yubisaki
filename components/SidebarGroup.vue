@@ -11,7 +11,7 @@
       @after-enter="unsetHeight"
       @before-leave="setHeight">
       <ul class="sidebar-group-items" ref="items" v-if="open || !collapsable">
-        <li v-for="child in item.children">
+        <li v-for="(child, index) in item.children" :key="index">
           <SidebarLink :item="child"/>
         </li>
       </ul>
