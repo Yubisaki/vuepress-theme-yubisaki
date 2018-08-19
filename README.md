@@ -1,4 +1,4 @@
-# vuepress-theme-yubisaki
+# vuepress-theme-yubisaki [en]
 
 ## HomePage
 
