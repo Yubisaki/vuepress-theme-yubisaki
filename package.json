@@ -16,6 +16,11 @@
   "author": "wuwaki",
   "license": "ISC",
   "dependencies": {
-    "html2canvas": "^1.0.0-alpha.12"
+    "autosize": "^4.0.2",
+    "axios": "^0.18.0",
+    "date-fns": "^1.29.0",
+    "html2canvas": "^1.0.0-alpha.12",
+    "node-polyglot": "^2.3.0",
+    "raw-loader": "^0.5.1"
   }
 }
