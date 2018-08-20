@@ -1,7 +1,7 @@
 const Layout = () => import('../Layout');
 
 /**
- * 注入路由
+ * Injection route
  * @param {*} Vue 
  * @param {*} param1 
  */
@@ -9,12 +9,12 @@ const install = (Vue, { router, themeConfig }) => {
     const navs = navsLocale(themeConfig.nav);
     const routes = [];
     
-    // 通过 redirect 获取目录结构中设置了 index 的目录
+    // Get the directory with the index set in the directory structure via redirect
     const navInRouter = router.options.routes
         .filter(route => route.redirect)
         .map(route => route.redirect);
 
-    // 注入 root
+    // Inject root
     navs.forEach(nav => {
         if (nav.root &&
             nav.link &&
@@ -28,7 +28,7 @@ const install = (Vue, { router, themeConfig }) => {
         }
     });
 
-    // 注入 tags
+    // Inject tags
     if (Vue.options.tags.useTag) {
         routes.push({
             path: `${Vue.options.tags.path}:tagName?`,
@@ -49,8 +49,8 @@ const hasPath = (router, path) => {
 }
 
 /**
- * 获取本地的 nav link
- * 过滤掉 http | https | // header
+ * Get local nav link
+ * Filter out http | https | // header
  * @param {Array} navs 
  */
 const navsLocale = (navs) => {

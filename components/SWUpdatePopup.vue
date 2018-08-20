@@ -33,11 +33,11 @@ export default {
     },
     message () {
       const c = this.popupConfig
-      return (c && c.message) || '获取新内容';
+      return (c && c.message) || 'Get new content';
     },
     buttonText () {
       const c = this.popupConfig
-      return (c && c.buttonText) || '刷新'
+      return (c && c.buttonText) || 'Refresh'
     }
   },
   methods: {

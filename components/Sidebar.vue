@@ -2,7 +2,7 @@
   <div class="sidebar">
     <NavLinks/>
     <ul class="sidebar-links" v-if="items.length">
-      <li v-for="(item, i) in items">
+      <li v-for="(item, i) in items" :key="i">
         <SidebarGroup v-if="item.type === 'group'"
           :item="item"
           :first="i === 0"
