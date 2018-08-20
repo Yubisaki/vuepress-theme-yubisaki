@@ -4,7 +4,8 @@
       @click="prevPage"
       v-if="currentPage > 1">← </span>
     <template>
-      <span v-for="num in pageSum" 
+      <span v-for="(num, index) in pageSum"
+        :key="index" 
         class="pagation-num"
         @click="changeCurrentPage(num)"
         :class="hightlightCurrentPage(num)">

@@ -1,6 +1,6 @@
 /**
- * 处理后面需要用到的 options, 挂载到 Vue 上
- * @param {*} themeConfig 主题配置
+ * Handle the options you need later, mount them on Vue
+ * @param {*} themeConfig theme configuration
  */
 const install = (Vue, { themeConfig }) => {
     const TAGS = '/tags/';

@@ -1,8 +1,8 @@
 <template>
   <div class="leetcode-group" >
-    <template v-for="info in pageItems">
+    <div v-for="(info, index) in pageItems" :key="index">
         <LeetCodeCard :info="info"/>
-    </template>
+    </div>
   </div>
 </template>
 
