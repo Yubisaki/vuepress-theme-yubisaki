@@ -1,166 +1,192 @@
 <template>
-  <div class="page card">
-    <div class="content-header">
-      <h1 v-if="title" 
-        class="page-title" 
-        :style="overrideStyle">
-        {{ title }}
-      </h1>
-      <span class="page-timestamp">{{ createTime }}</span>      
+  <div>
+    <div class="page card">
+      <div class="content-header">
+        <h1 v-if="title" 
+          class="page-title" 
+          :style="overrideStyle">
+          {{ title }}
+        </h1>
+        <span class="page-timestamp">{{ createTime }}</span>      
+      </div>
+      <Content :custom="false"/>
+      <div class="content edit-link" v-if="editLink">
+        <a :href="editLink" target="_blank" rel="noopener noreferrer">{{ editLinkText }}</a>
+        <OutboundLink/>
+      </div>
+      <div class="content page-nav" v-if="prev || next">
+        <p class="inner">
+          <span v-if="prev" class="prev">
+            ← <router-link v-if="prev" class="prev" :to="prev.path">
+              {{ prev.title || prev.path }}
+            </router-link>
+          </span>
+          <span v-if="next" class="next">
+            <router-link v-if="next" :to="next.path">
+              {{ next.title || next.path }}
+            </router-link> →
+          </span>
+        </p>
+      </div>
     </div>
-    <Content :custom="false"/>
-    <div class="content edit-link" v-if="editLink">
-      <a :href="editLink" target="_blank" rel="noopener noreferrer">{{ editLinkText }}</a>
-      <OutboundLink/>
-    </div>
-    <div class="content page-nav" v-if="prev || next">
-      <p class="inner">
-        <span v-if="prev" class="prev">
-          ← <router-link v-if="prev" class="prev" :to="prev.path">
-            {{ prev.title || prev.path }}
-          </router-link>
-        </span>
-        <span v-if="next" class="next">
-          <router-link v-if="next" :to="next.path">
-            {{ next.title || next.path }}
-          </router-link> →
-        </span>
-      </p>
+    <div id="comment-container">
+        <Comment />
     </div>
   </div>
 </template>
 
 <script>
-import OutboundLink from './OutboundLink.vue'
-import navLayoutMixin from './lib/navLayout.mixin'
-import { resolvePage, normalize, outboundRE, endingSlashRE, pageNormalize } from './lib/util'
+import OutboundLink from "./components/OutboundLink.vue";
+import navLayoutMixin from "./lib/navLayout.mixin";
+import Comment from './package/comment';
+import {
+    resolvePage,
+    normalize,
+    outboundRE,
+    endingSlashRE,
+    pageNormalize
+} from "./lib/util";
 
 export default {
-  mixins: [navLayoutMixin],
-  components: { OutboundLink },
-  props: ['sidebarItems'],
-  computed: {
-    prev () {
-      const prev = this.$page.frontmatter.prev
-      if (prev === false) {
-        return
-      } else if (prev) {
-        return resolvePage(this.pages, prev, this.$route.name)
-      } else {
-        return resolvePrev(this.$route.name, this.pages)
-      }
-    },
-    next () {
-      const next = this.$page.frontmatter.next
-      if (next === false) {
-        return
-      } else if (next) {
-        return resolvePage(this.pages, next, this.$route.name)
-      } else {
-        return resolveNext(this.$route.name, this.pages)
-      }
-    },
-    title() {
-      return this.$page.frontmatter.title
-    },
-    createTime() {
-      const stamp = this.$page.frontmatter.date
-      const format = this.$site.themeConfig['date_format']      
-      if(!stamp || !format) return ''
-      const date = new Date(stamp)
-      return date.Format(format)
-    },
-    overrideStyle() {
-      const accentColor = this.$site.themeConfig['accentColor']
-      return accentColor ? { color: accentColor } : {}
-    },
-    editLink () {
-      const {
-        repo,
-        editLinks,
-        docsDir = '',
-        docsBranch = 'master'
-      } = this.$site.themeConfig
+    mixins: [navLayoutMixin],
+    components: { OutboundLink, Comment },
+    props: ["sidebarItems"],
+    computed: {
+        prev() {
+            const prev = this.$page.frontmatter.prev;
+            if (prev === false) {
+                return;
+            } else if (prev) {
+                return resolvePage(this.pages, prev, this.$route.name);
+            } else {
+                return resolvePrev(this.$route.name, this.pages);
+            }
+        },
+        next() {
+            const next = this.$page.frontmatter.next;
+            if (next === false) {
+                return;
+            } else if (next) {
+                return resolvePage(this.pages, next, this.$route.name);
+            } else {
+                return resolveNext(this.$route.name, this.pages);
+            }
+        },
+        title() {
+            return this.$page.frontmatter.title;
+        },
+        createTime() {
+            const stamp = this.$page.frontmatter.date;
+            const format = this.$site.themeConfig["date_format"];
+            if (!stamp || !format) return "";
+            const date = new Date(stamp);
+            return date.Format(format);
+        },
+        overrideStyle() {
+            const accentColor = this.$site.themeConfig["accentColor"];
+            return accentColor ? { color: accentColor } : {};
+        },
+        editLink() {
+            const {
+                repo,
+                editLinks,
+                docsDir = "",
+                docsBranch = "master"
+            } = this.$site.themeConfig;
 
-      let path = normalize(this.$page.path)
-      if (endingSlashRE.test(path)) {
-        path += 'README.md'
-      } else {
-        path += '.md'
-      }
+            let path = normalize(this.$page.path);
+            if (endingSlashRE.test(path)) {
+                path += "README.md";
+            } else {
+                path += ".md";
+            }
 
-      if (repo && editLinks) {
-        const base = outboundRE.test(repo)
-          ? repo
-          : `https://github.com/${repo}`
-        return (
-          base.replace(endingSlashRE, '') +
-          `/edit/${docsBranch}/` +
-          docsDir.replace(endingSlashRE, '') +
-          path
-        )
-      }
-    },
-    editLinkText () {
-      return (
-        this.$themeLocaleConfig.editLinkText ||
-        this.$site.themeConfig.editLinkText ||
-        `Edit this page`
-      )
+            if (repo && editLinks) {
+                const base = outboundRE.test(repo)
+                    ? repo
+                    : `https://github.com/${repo}`;
+                return (
+                    base.replace(endingSlashRE, "") +
+                    `/edit/${docsBranch}/` +
+                    docsDir.replace(endingSlashRE, "") +
+                    path
+                );
+            }
+        },
+        editLinkText() {
+            return (
+                this.$themeLocaleConfig.editLinkText ||
+                this.$site.themeConfig.editLinkText ||
+                `Edit this page`
+            );
+        }
     }
-  },
-}
+};
 
 function resolvePrev(name, pages) {
-  return find(name, pages, -1)
+    return find(name, pages, -1);
 }
 
 function resolveNext(name, pages) {
-  return find(name, pages, 1)
+    return find(name, pages, 1);
 }
 
 function find(name, pages, offset) {
-  
-  for(let i = 0; i < pages.length; i++) {
-    if(pages[i].key === name) {
-      if(offset < 0 && i === 0) return false
-      if(offset > 0 && i === pages.length - 1) return false
-      const page = pages[i + offset]
-      return page.path === '/' ? false : page
+    for (let i = 0; i < pages.length; i++) {
+        if (pages[i].key === name) {
+            if (offset < 0 && i === 0) return false;
+            if (offset > 0 && i === pages.length - 1) return false;
+            const page = pages[i + offset];
+            return page.path === "/" ? false : page;
+        }
     }
-  }
 }
 </script>
 
 <style lang="stylus" src="./styles/card.styl"></style>
 <style lang="stylus">
-@import './styles/config.styl'
+@import './styles/config.styl';
 
-.page
-  padding-bottom 2rem
+#comment-container {
+    color: #6190E8;
+}
 
-.page-title
-  margin-bottom -2rem
+.page {
+  padding-bottom: 2rem;
+}
 
-.page-timestamp
-  display block
-  font-size 14px
-  margin-top 2.5rem
+.page-title {
+  margin-bottom: -2rem;
+}
 
-.edit-link.content
-  padding-top 0 !important
-  a
-    color lighten($textColor, 25%)
-    margin-right 0.25rem
+.page-timestamp {
+  display: block;
+  font-size: 14px;
+  margin-top: 2.5rem;
+}
 
-.page-nav.content
-  padding-top 1rem !important
-  padding-bottom 0 !important
-  .inner
-    min-height 2rem
-    margin-top 0 !important
-    border-top 1px solid $borderColor
-    padding-top 1rem
-  .next
-    float right
+.edit-link.content {
+  padding-top: 0 !important;
+
+  a {
+    color: lighten($textColor, 25%);
+    margin-right: 0.25rem;
+  }
+}
+
+.page-nav.content {
+  padding-top: 1rem !important;
+  padding-bottom: 0 !important;
+
+  .inner {
+    min-height: 2rem;
+    margin-top: 0 !important;
+    border-top: 1px solid $borderColor;
+    padding-top: 1rem;
+  }
+
+  .next {
+    float: right;
+  }
+}
 </style>

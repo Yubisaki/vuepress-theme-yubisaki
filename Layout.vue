@@ -19,6 +19,8 @@
           <ArticleGroup v-else-if="isRoot" :page-items="pageItems" />
           <!-- nav with layout list -->
           <ArticleGroup v-else-if="isNavLayout" :page-items="pageItems" />
+          <!-- tags -->
+          <Tags v-else-if="isTag" />
           <!-- article page -->
           <Page v-else :sidebar-items="sidebarItems"/>
           <!-- pagation selector -->
@@ -37,15 +39,16 @@
 <script>
 import Vue from "vue";
 import nprogress from "nprogress";
-import Activity from "./Activity.vue";
-import Navbar from "./Navbar.vue";
+import Activity from "./layout/Activity.vue";
+import Navbar from "./components/Navbar.vue";
 import Page from "./Page.vue";
-import Sidebar from "./Sidebar.vue";
-import ToolGroup from "./ToolGroup.vue";
-import ArticleGroup from './ArticleGroup.vue'
-import LeetCodeGroup from './LeetCodeGroup.vue'
-import Pagation from './Pagation.vue'
-import SWUpdatePopup from './SWUpdatePopup.vue'
+import Sidebar from "./components/Sidebar.vue";
+import ToolGroup from "./components/ToolGroup.vue";
+import ArticleGroup from './components/ArticleGroup.vue'
+import LeetCodeGroup from './components/LeetCodeGroup.vue'
+import Pagation from './components/Pagation.vue'
+import SWUpdatePopup from './components/SWUpdatePopup.vue'
+import Tags from './components/Tags.vue'
 import navLayoutMixin from './lib/navLayout.mixin'
 import { resolveSidebarItems, getTitle } from "./lib/util";
 
@@ -60,6 +63,7 @@ export default {
     ArticleGroup, 
     LeetCodeGroup, 
     Pagation,
+    Tags,
     SWUpdatePopup
   },
   data() {
@@ -71,7 +75,10 @@ export default {
   },
   computed: {
     isRoot() {
-      return this.$route.path === (this.$site.base || '/');
+      return this.$route.meta.root || this.$route.path === this.$rootOptions.path;
+    },
+    isTag() {
+      return this.$route.meta.tag;
     },
     isNoToolGroup() {
       return this.$page.frontmatter.layout || this.$page.frontmatter.activity
@@ -190,6 +197,7 @@ export default {
       }
     },
     onSWUpdated(e) {
+      console.log('pwa update: ', e);
       this.swUpdateEvent = e;
     }
   }

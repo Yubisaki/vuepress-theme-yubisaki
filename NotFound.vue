@@ -3,16 +3,17 @@
     <div class="content">
       <h1>404</h1>
       <blockquote>{{ getMsg() }}</blockquote>
+      <router-link to="/">back to the homepage</router-link>
     </div>
   </div>
 </template>
 
 <script>
 const msgs = [
-  `网页乘坐 404 航班去了.`,
-  `你是怎么来到这的?`,
-  `似乎出现了一点问题, 正在修复中`,
-  `emmm, 网页受到了二向箔打击.`
+  `The page went on flight 404.`,
+  `How did you come here?`,
+  `It seems that there is a problem, it is being repaired.`,
+  `Emmm, the page was hit by a two-way foil.`
 ]
 
 export default {
