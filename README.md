@@ -86,6 +86,33 @@ Use `gitalk` for comment system, click [gitalk](https://github.com/gitalk/gitalk
 
 But, don't support flipMoveOptions and render instane method
 
+If you want to have more than one action button (in this case actionText and actionLink will be ignored):
+```yaml
+heroText: Yubisaki # title
+activity: true # 使用自定义的 activity layout, 会收起右边的卡片栏
+hidden: true # 设置是否在文章列表中显示
+tagline: vuepress 博客主题 # 描述
+heroImage: /static/logo.png # logo
+# 参考官方默认主题的配置
+# actionText: 了解一下 →  
+# actionLink: /yubisaki/usage.html # action 链接
+data:
+  actions :
+    - text : Action1
+      link : /yubisaki/action1.html
+    - text : Action2
+      link : /yubisaki/action2.html
+features:
+  - title: 这是什么
+    details: 一个基于 vuepress 的博客主题, 它基于 vuepress 提供的默认主题
+  - title: 有哪些特点
+    details: 提供文章列表, 文章分页, 文章详情, github card, 自定义活动页 layout 等等功能
+  - title: TODO
+    details: 标签云, TAG ARCHIVE, 一些脚本, 一些 开箱即用的layout
+footer: by stickmy
+```
+
+
 ## Configuration
 
 For your reference, I have put the configuration of my blog (`.vuepress/config.js`) here: 
@@ -208,6 +235,12 @@ Accordingly.
 
 ## TODO
 
+<<<<<<< HEAD
+- 标签云
+- 文章分类
+- 更多类似 github card 的卡片
+=======
 - Tag Cloud
 - Article classification
 - More cards like github card
+>>>>>>> bffa01b7f8507226eac86c008b45c5df14f671cb
