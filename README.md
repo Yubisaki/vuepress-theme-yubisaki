@@ -169,6 +169,12 @@ heroImage: /static/logo.png # logo
 # Refer to the configuration of the official default theme for service static files
 actionText: Learn about → 
 actionLink: /yubisaki/usage.html
+# If you want to have more than one action button (in this case actionText and actionLink will be ignored):
+# actions :
+#    - text : Action1
+#      link : /yubisaki/action1.html
+#    - text : Action2
+#      link : /yubisaki/action2.html
 features:
   - title: what is this
     details: A vuepress-based blog theme based on the default theme provided by vuepress

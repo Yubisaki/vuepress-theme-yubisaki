@@ -6,10 +6,21 @@
       <p class="description">
         {{ data.tagline }}
       </p>
-      <p class="action" v-if="data.actionText && data.actionLink">
-        <Particle>
-          <AnimationButton class="action-button" :item="actionLink"/>
-        </Particle>
+      <p>
+        <div v-if="actions && actions.length">
+          <Particle>
+            <span class="action" v-for="action in actions">
+              <AnimationButton class="action-button" :item="action"/>&nbsp;
+            </span>
+          </Particle>
+        </div>
+        <div v-else>
+          <Particle>
+            <span class="action" v-if="data.actionText && data.actionLink">
+              <AnimationButton class="action-button" :item="actionLink"/>
+            </span>
+          </Particle>
+        </div>
       </p>
     </div>
     <div class="features" v-if="data.features && data.features.length">
@@ -34,6 +45,9 @@ export default {
   computed: {
     data () {
       return this.$page.frontmatter
+    },
+    actions () {
+      return this.$page.frontmatter.actions || []
     },
     actionLink () {
       return {
