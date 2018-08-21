@@ -47,11 +47,7 @@ export default {
       return this.$page.frontmatter
     },
     actions () {
-      if (typeof this.$page.frontmatter.data !== 'undefined' && typeof this.$page.frontmatter.data.actions !== 'undefined') {
-        return this.$page.frontmatter.data.actions
-      } else {
-        return []
-      }
+      return this.$page.frontmatter.actions || []
     },
     actionLink () {
       return {
