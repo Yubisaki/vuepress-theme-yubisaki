@@ -56,7 +56,7 @@ const Mixin = {
             this.options = Object.assign(
                 this.options,
                 {
-                    id: location.href,
+                    id: document.title,
                     number: -1,
                     labels: ["Gitalk"],
                     title: document.title,
