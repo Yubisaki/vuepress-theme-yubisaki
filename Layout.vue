@@ -133,12 +133,14 @@ export default {
     wrapClasses() {
       const { themeConfig } = this.$site;
       return themeConfig.background
-        ? {
-            background:
-              'url("' +
-              `${this.$withBase(themeConfig.background)}` +
-              '") no-repeat fixed'
-          }
+        ? themeConfig.background.indexOf('.') > 0
+          ? {
+              background:
+                'url("' +
+                `${this.$withBase(themeConfig.background)}` +
+                '") center no-repeat fixed'
+            }
+            : { background: themeConfig.background }
         : { background: "#f6f6f6" };
     }
   },
