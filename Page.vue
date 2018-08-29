@@ -29,7 +29,7 @@
         </p>
       </div>
     </div>
-    <div id="comment-container">
+    <div id="comment-container" v-if="$site.themeConfig.comment">
         <Comment />
     </div>
   </div>
