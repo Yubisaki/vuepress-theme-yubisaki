@@ -1,3 +1,5 @@
+[![npm](https://img.shields.io/badge/npm-vuepress--theme--yubisaki-green.svg?style=popout-square)](https://www.npmjs.com/package/vuepress-theme-yubisaki)
+
 # vuepress-theme-yubisaki [en]
 
 [中文说明](https://wuwaki.me/yubisaki/)
