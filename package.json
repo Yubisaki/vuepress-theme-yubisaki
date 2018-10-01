@@ -1,26 +1,30 @@
 {
   "name": "vuepress-theme-yubisaki",
+  "private": true,
   "version": "3.0.3",
+  "workspaces": [
+    "plugins/*"
+  ],
   "description": "vuepress-theme",
   "repository": "https://github.com/Bloss/vuepress-theme-yubisaki",
   "homepage": "https://github.com/Bloss/vuepress-theme-yubisaki/blob/master/README.md",
-  "main": "util.js",
   "keywords": [
     "vuepress",
     "theme",
     "vuepress-theme"
   ],
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "author": "子肃 <stickmyc@163.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@yubisaki/plugin-back-to-top": "0.0.0"
   },
-  "author": "wuwaki",
-  "license": "ISC",
   "dependencies": {
     "autosize": "^4.0.2",
     "axios": "^0.18.0",
     "date-fns": "^1.29.0",
     "github-markdown-css": "^2.10.0",
     "html2canvas": "^1.0.0-alpha.12",
+    "lerna": "^3.4.0",
     "node-polyglot": "^2.3.0",
     "raw-loader": "^0.5.1"
   }

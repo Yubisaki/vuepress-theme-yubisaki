@@ -1,0 +1,11 @@
+{
+  "name": "@yubisaki/plugin-pagination",
+  "version": "0.0.0",
+  "description": "pagination plugin for vuepress theme yubisaki",
+  "main": "index.js",
+  "author": "子肃 <stickmyc@163.com>",
+  "license": "MIT",
+  "dependencies": {
+    "lodash": "^4.17.11"
+  }
+}

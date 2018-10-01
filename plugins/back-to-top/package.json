@@ -1,0 +1,14 @@
+{
+  "name": "@yubisaki/plugin-back-to-top",
+  "version": "0.0.0",
+  "publishConfig": {
+    "access": "public"
+  },
+  "description": "back-to-top plugin for vuepress theme yubisaki",
+  "main": "index.js",
+  "author": "子肃 <stickmyc@163.com>",
+  "license": "MIT",
+  "dependencies": {
+    "lodash": "^4.17.11"
+  }
+}
