@@ -20,16 +20,6 @@
   </header>
 </template>
 
-<script>
-import SidebarButton from "./SidebarButton.vue";
-import SearchBox from "./SearchBox.vue";
-import NavLinks from "./NavLinks.vue";
-
-export default {
-  components: { SidebarButton, NavLinks, SearchBox }
-};
-</script>
-
 <style lang="stylus">
 @import '../styles/config.styl';
 
@@ -42,7 +32,15 @@ export default {
 }
 
 .navbar {
-  position: relative;
+  position fixed
+  z-index 20
+  top 0
+  left 0
+  right 0
+  height $navbarHeight
+  background-color #fff
+  box-sizing border-box
+  border-bottom 1px solid rgba(0,0,0,0.25)
 
   a, span, img {
     display: inline-block;

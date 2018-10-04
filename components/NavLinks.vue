@@ -5,29 +5,17 @@
       class="nav-item"
       v-for="item in userLinks"
       :key="item.link">
-      <DropdownLink v-if="item.type === 'links'" :item="item"/>
-      <NavLink v-else :item="item"/>
+      <NavLink :item="item"/>
     </div>
-    <!-- github link -->
-    <a v-if="githubLink"
-      :href="githubLink"
-      class="github-link"
-      target="_blank"
-      rel="noopener noreferrer">
-      GitHub
-      <OutboundLink/>
-    </a>
   </nav>
 </template>
 
 <script>
-import OutboundLink from './OutboundLink.vue'
-import DropdownLink from './DropdownLink.vue'
 import { isActive, resolveNavLinkItem } from '../lib/util'
 import NavLink from './NavLink.vue'
 
 export default {
-  components: { OutboundLink, NavLink, DropdownLink },
+  components: { NavLink },
   computed: {
     userNav () {
       return this.$themeLocaleConfig.nav || this.$site.themeConfig.nav || []
@@ -69,14 +57,6 @@ export default {
         })
       }))
     },
-    githubLink () {
-      const { repo } = this.$site.themeConfig
-      if (repo) {
-        return /^https?:/.test(repo)
-          ? repo
-          : `https://github.com/${repo}`
-      }
-    }
   },
   methods: {
     isActive

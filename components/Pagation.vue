@@ -1,63 +1,30 @@
 <template>
   <nav class="pagation-nav">
-    <span class="pagation-action pagation-prev" 
-      @click="prevPage"
-      v-if="currentPage > 1">← </span>
+    <router-link class="pagation-action pagation-prev" 
+      :to="$pagination.prevLink"
+      v-if="$pagination.hasPrev">← </router-link>
     <template>
-      <span v-for="(num, index) in pageSum"
+      <router-link v-for="({ path }, index) in $pagination.pages"
         :key="index" 
         class="pagation-num"
-        @click="changeCurrentPage(num)"
-        :class="hightlightCurrentPage(num)">
-        {{ num }}
-      </span>  
+        :to="path"
+        :class="hightlightCurrentPage(index + 1)">
+        {{ index + 1 }}
+      </router-link>  
     </template> 
-    <span class="pagation-action pagation-next" 
-      @click="nextPage"
-      v-if="currentPage < pageSum"> →</span>
+    <router-link class="pagation-action pagation-next" 
+      :to="$pagination.nextLink"
+      v-if="$pagination.hasNext"> →</router-link>
   </nav>
 </template>
 
 <script>
-import navLayoutMixin from '../lib/navLayout.mixin'
-
 export default {
-  mixins: [navLayoutMixin],  
-  props: {
-    pageItems: {
-      default: () => []
-    }
-  },
-  data() {
-    return {
-      currentPage: 1
-    }
-  },
   methods: {
-    changeCurrentPage(pageNum) {
-      window.scrollTo(0, 0);
-      this.currentPage = pageNum
-    },
-    prevPage() {
-      this.currentPage = this.currentPage - 1
-    },
-    nextPage() {
-      this.currentPage = this.currentPage + 1
-    },
     hightlightCurrentPage(pageNum) {
       return {
-        'pagation-current': pageNum === this.currentPage
+        'pagation-current': pageNum === this.$pagination.currentIndex + 1
       }
-    },
-  },
-  computed: {
-    pageSum() {
-      return Math.ceil(this.pageItems.length / this.perPage)
-    },
-  },
-  watch: {
-    currentPage(pageNum) {
-      this.$emit('change', pageNum)
     }
   }
 }
@@ -70,7 +37,7 @@ export default {
   clear both
   line-height 2
   overflow hidden
-  span:hover
+  a:hover
     color #000
 
 .pagation-action
@@ -84,6 +51,7 @@ export default {
 
 .pagation-num
   cursor pointer
+  color #ccc
   padding 10px 20px
   line-height 1
   height 2ex

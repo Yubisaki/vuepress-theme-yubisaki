@@ -16,7 +16,9 @@
   "author": "子肃 <stickmyc@163.com>",
   "license": "MIT",
   "devDependencies": {
-    "@yubisaki/plugin-back-to-top": "0.0.0"
+    "@vuepress/plugin-register-components": "^1.0.0-alpha.0",
+    "@yubisaki/vuepress-plugin-blog": "0.0.0",
+    "@yubisaki/vuepress-plugin-pagination": "0.0.0"
   },
   "dependencies": {
     "autosize": "^4.0.2",

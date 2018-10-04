@@ -1,39 +1,41 @@
 <template>
-  <div class="home">
-    <div class="hero">
-      <img v-if="data.heroImage" :src="$withBase(data.heroImage)" alt="hero">
-      <h1>{{ data.heroText }}</h1>
-      <p class="description">
-        {{ data.tagline }}
-      </p>
-      <p>
-        <div v-if="actions && actions.length">
-          <Particle>
-            <span class="action" v-for="action in actions">
-              <AnimationButton class="action-button" :item="action"/>&nbsp;
-            </span>
-          </Particle>
+  <ActivityContainer>
+    <div class="home">
+      <div class="hero">
+        <img v-if="data.heroImage" :src="$withBase(data.heroImage)" alt="hero">
+        <h1>{{ data.heroText }}</h1>
+        <p class="description">
+          {{ data.tagline }}
+        </p>
+        <p>
+          <div v-if="actions && actions.length">
+            <Particle>
+              <span class="action" v-for="(action, index) in actions" :key="index">
+                <AnimationButton class="action-button" :item="action"/>&nbsp;
+              </span>
+            </Particle>
+          </div>
+          <div v-else>
+            <Particle>
+              <span class="action" v-if="data.actionText && data.actionLink">
+                <AnimationButton class="action-button" :item="actionLink"/>
+              </span>
+            </Particle>
+          </div>
+        </p>
+      </div>
+      <div class="features" v-if="data.features && data.features.length">
+        <div class="feature" v-for="(feature, index) in data.features" :key="index">
+          <h2>{{ feature.title }}</h2>
+          <p>{{ feature.details }}</p>
         </div>
-        <div v-else>
-          <Particle>
-            <span class="action" v-if="data.actionText && data.actionLink">
-              <AnimationButton class="action-button" :item="actionLink"/>
-            </span>
-          </Particle>
-        </div>
-      </p>
-    </div>
-    <div class="features" v-if="data.features && data.features.length">
-      <div class="feature" v-for="(feature, index) in data.features" :key="index">
-        <h2>{{ feature.title }}</h2>
-        <p>{{ feature.details }}</p>
+      </div>
+      <Content custom />
+      <div class="act-footer" v-if="data.footer">
+        {{ data.footer }}
       </div>
     </div>
-    <Content custom />
-    <div class="footer" v-if="data.footer">
-      {{ data.footer }}
-    </div>
-  </div>
+  </ActivityContainer>
 </template>
 
 <script>
@@ -118,7 +120,7 @@ export default {
       color lighten($textColor, 10%)
     p
       color lighten($textColor, 25%)
-  .footer
+  .act-footer
     padding 2.5rem
     border-top 1px solid $borderColor
     text-align center

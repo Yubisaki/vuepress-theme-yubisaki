@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import { isExternal, isMailto, ensureExt } from '../lib/util'
+import { isExternal, isMailto, ensureExt } from '../lib/util';
 
 export default {
   props: {
@@ -23,26 +23,26 @@ export default {
     }
   },
   data() {
-      return {
-          timeout: null
-      }
+    return {
+      timeout: null
+    };
   },
   computed: {
     link() {
-      return ensureExt(this.item.link)
+      return ensureExt(this.item.link);
     }
   },
   methods: {
     isExternal,
     isMailto,
     go() {
-        this.timeout = setTimeout(() => {
-            this.$router.push(this.link);
-        }, 1000);
+      this.timeout = setTimeout(() => {
+        this.$router.push(this.link);
+      }, 1000);
     }
   },
   destroyed() {
     clearTimeout(this.timeout);
-  },
-}
+  }
+};
 </script>
