@@ -3,8 +3,7 @@
     <div class="card">
       <div class="content-header">
         <h1 v-if="title" 
-          class="page-title" 
-          :style="overrideStyle">
+          class="page-title">
           {{ title }}
         </h1>
         <span class="page-timestamp">{{ createTime }}</span>      
@@ -51,9 +50,9 @@ export default {
       if (prev === false) {
         return;
       } else if (prev) {
-        return resolvePage(this.$pagination.posts, prev, this.$route.name);
+        return resolvePage(this.$pagination.all, prev, this.$route.name);
       } else {
-        return resolvePrev(this.$route.name, this.$pagination.posts);
+        return resolvePrev(this.$route.name, this.$pagination.all);
       }
     },
     next() {
@@ -61,9 +60,9 @@ export default {
       if (next === false) {
         return;
       } else if (next) {
-        return resolvePage(this.$pagination.posts, next, this.$route.name);
+        return resolvePage(this.$pagination.all, next, this.$route.name);
       } else {
-        return resolveNext(this.$route.name, this.$pagination.posts);
+        return resolveNext(this.$route.name, this.$pagination.all);
       }
     },
     title() {
@@ -121,6 +120,7 @@ function find(name, pages, offset) {
 
 .page-title {
   margin-bottom: -2rem;
+  color: $postColor;
 }
 
 .page-timestamp {

@@ -1,5 +1,5 @@
 <template>
-  <ActivityContainer>
+  <NoToolContainer>
     <div class="home">
       <div class="hero">
         <img v-if="data.heroImage" :src="$withBase(data.heroImage)" alt="hero">
@@ -35,7 +35,7 @@
         {{ data.footer }}
       </div>
     </div>
-  </ActivityContainer>
+  </NoToolContainer>
 </template>
 
 <script>

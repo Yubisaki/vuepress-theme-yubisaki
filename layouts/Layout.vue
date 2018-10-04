@@ -1,7 +1,7 @@
 <template>
   <LayoutContainer>
     <List :items="$pagination.posts"/>
-    <Pagation />
+    <Pagination />
   </LayoutContainer>
 </template>
 

@@ -1,15 +1,15 @@
 <template>
   <div class="card article-card">
     <!-- Article title -->
-    <h2 :class="headerOverviewClasses">
+    <h2>
       <router-link class="art-header-link"
-        :to="post.path" :style="overrideStyle">{{ title }}</router-link>
+        :to="post.path">{{ title }}</router-link>
     </h2>
     <!-- Article overview -->
     <div v-html="post.excerpt"></div>
     <!-- Tag area -->
     <div v-if="post.tags">
-      <div class="theme-line article-card-line"></div>
+      <div class="divider article-card-line"></div>
       <tag v-for="tag in post.tags" 
         :key="tag"
         :slug="tag">
@@ -34,28 +34,25 @@ export default {
   computed: {
     title() {
       return this.post.frontmatter.title || this.post.title;
-    },
-    headerOverviewClasses() {
-      return {
-        overview: this.post.excerpt
-      };
-    },
-    overrideStyle() {
-      const { accentColor } = this.$site.themeConfig;
-      return accentColor ? { color: accentColor } : {};
     }
   }
 };
 </script>
 
 <style src="../styles/card.styl" lang="stylus"></style>
-<style src="../styles/theme.styl" lang="stylus"></style>
 <style lang="stylus">
 @import '../styles/config';
 
 .article-card-line {
   margin-bottom: 16px;
 }
+
+.divider
+  width 100%
+  height 1px
+  transform scaleY(0.5)
+  transform-origin 50% 100%
+  background #DCDCDC
 
 .article-card {
   position: relative;
@@ -68,6 +65,7 @@ export default {
 
   .art-header-link {
     position: relative;
+    color: $postColor;
     text-transform: capitalize;
     font-size: 24px;
     line-height: 36px;

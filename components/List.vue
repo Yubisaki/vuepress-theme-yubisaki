@@ -1,5 +1,5 @@
 <template>
-  <div class="post-list">
+  <div>
     <template v-for="(info, idx) in items">
       <PostCard :post="info" :key="idx" />
     </template>
@@ -14,10 +14,6 @@ export default {
 
 <style lang="stylus">
 @import '../styles/config';
-
-.post-list {
-  margin-right: 10px;
-}
 
 @media (max-width: ($MQNarrow + 1px)) {
   .post-list {
