@@ -25,11 +25,17 @@
 
 .nav-header {
   position relative
-  padding 0.7rem 1rem
+  padding 0 1rem
   margin 0 auto
   width $appWidth
-  line-height $navbarHeight - 1.4rem
+  height $navbarHeight
+  line-height $navbarHeight
 }
+
+.home-link
+  height $navbarHeight
+  line-height $navbarHeight
+  margin-right 0.75rem
 
 .navbar {
   position fixed
@@ -49,6 +55,7 @@
   .logo {
     height: $navbarHeight - 1.4rem;
     min-width: $navbarHeight - 1.4rem;
+    margin-top: 0.7rem;
     margin-right: 0.8rem;
     vertical-align: top;
   }
@@ -63,8 +70,8 @@
   .links {
     font-size: 0.9rem;
     position: absolute;
-    right: 1.5rem;
-    top: 0.7rem;
+    right: 2.5rem;
+    top: 0;
   }
 }
 
@@ -72,6 +79,7 @@
   .nav-header {
     position static
     width 100%
+    padding 0
   }
 
 @media (max-width: $MQMobile) {
