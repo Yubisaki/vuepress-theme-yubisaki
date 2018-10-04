@@ -1,8 +1,9 @@
 <template>
-  <div>
-    <Navbar />
-    <div class="sidebar-mask" @click="togglesidebar(false)"></div>
-    <!-- <sidebar :items="sidebarItems" @toggle-sidebar="toggleSidebar"/> -->
+  <div :class="containerClass" class="theme">
+    <!-- emit event for toggle sidebar in mobile mode -->
+    <Navbar @toggle-sidebar="toggleSidebar" />
+    <div class="sidebar-mask" @click="toggleSidebar(false)"></div>
+    <Sidebar v-if="isSidebarOpen" @toggle-sidebar="toggleSidebar"/>
     <div class="layout-container">
       <div class="main">
         <slot />
@@ -13,17 +14,65 @@
 </template>
 
 <script>
+import Vue from 'vue';
 import Footer from '@theme/components/Footer';
+import nprogress from "nprogress";
 
 export default {
-  components: { Footer }
+  components: { Footer },
+  mounted() {
+    nprogress.configure({ showSpinner: false });
+    this.$router.beforeEach((to, from, next) => {
+      if (to.path !== from.path && !Vue.component(to.name)) {
+        nprogress.start();
+      }
+      next();
+    });
+    this.$router.afterEach(() => {
+      nprogress.done();
+      this.isSidebarOpen = false;
+    });
+  },
+  data () {
+    return {
+      isSidebarOpen: false
+    }
+  },
+  methods: {
+    toggleSidebar (to) {
+      this.isSidebarOpen = typeof to === "boolean" ? to : !this.isSidebarOpen;
+    }
+  },
+  computed: {
+    containerClass () {
+      return [{
+        "sidebar-open": this.isSidebarOpen
+      }]
+    }
+  }
 }
 </script>
 
 <style src="prismjs/themes/prism-tomorrow.css"></style>
 <style src="../styles/theme.styl"></style>
+<style src="../styles/mobile.styl"></style>
 <style lang="stylus">
 @import '../styles/config.styl';
+
+.theme
+  &.sidebar-open
+    .sidebar-mask
+      display: block
+
+.sidebar-mask
+  position fixed
+  z-index 9
+  top 0
+  left 0
+  width 100vw
+  height 100vh
+  display none
+
 .main
   width $appWidth
   padding 1rem
