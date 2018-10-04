@@ -1,69 +1,25 @@
 <template>
   <div class="sidebar">
-    <NavLinks/>
-    <ul class="sidebar-links" v-if="items.length">
-      <li v-for="(item, i) in items" :key="i">
-        <SidebarGroup v-if="item.type === 'group'"
-          :item="item"
-          :first="i === 0"
-          :open="i === openGroupIndex"
-          :collapsable="item.collapsable"
-          @toggle="toggleGroup(i)"/>
-        <SidebarLink v-else :item="item"/>
-      </li>
-    </ul>
+    <NavLinks />
   </div>
 </template>
 
 <script>
-import SidebarGroup from './SidebarGroup.vue'
-import SidebarLink, { groupHeaders } from './SidebarLink.vue'
 import NavLinks from './NavLinks.vue'
-import { isActive, resolveSidebarItems } from '../lib/util'
+import { isActive } from '../lib/util'
 
 export default {
-  components: { SidebarGroup, SidebarLink, NavLinks },
-  props: ['items'],
+  components: { NavLinks },
   data () {
     return {
       openGroupIndex: 0
     }
   },
-  created () {
-    this.refreshIndex()
-  },
-  watch: {
-    '$route' () {
-      this.refreshIndex()
-    }
-  },
   methods: {
-    refreshIndex () {
-      const index = resolveOpenGroupIndex(
-        this.$route,
-        this.items
-      )
-      if (index > -1) {
-        this.openGroupIndex = index
-      }
-    },
-    toggleGroup (index) {
-      this.openGroupIndex = index === this.openGroupIndex ? -1 : index
-    },
     isActive (page) {
       return isActive(this.$route, page.path)
     }
   }
-}
-
-function resolveOpenGroupIndex (route, items) {
-  for (let i = 0; i < items.length; i++) {
-    const item = items[i]
-    if (item.type === 'group' && item.children.some(c => isActive(route, c.path))) {
-      return i
-    }
-  }
-  return -1
 }
 </script>
 
@@ -71,23 +27,46 @@ function resolveOpenGroupIndex (route, items) {
 @import '../styles/config.styl'
 
 .sidebar
+  font-size 15px
+  background-color #fff
+  position fixed
+  z-index 10
+  margin 0
+  left 0
+  bottom 0
+  box-sizing border-box
+  border-right 1px solid $borderColor
+  overflow-y auto
+
   ul
     padding 0
     margin 0
     list-style-type none
+    > li
+      width 100%
   a
     display inline-block
   .nav-links
     display none
-    border-bottom 1px solid $borderColor
     padding 0.5rem 0 0.75rem 0
     a
+      position relative
       font-weight 600
-    .nav-item, .github-link
+      height 2rem
+      line-height 2rem
+      border-bottom 0
+      &:before
+        position absolute
+        content ''
+        left 2px
+        top 0.5rem
+        height 1rem
+        border-left 4px solid transparent
+    .nav-item
       display block
-      line-height 1.25rem
       font-size 1.1em
-      padding 0.5rem 0 0.5rem 1.5rem
+      .router-link-active:before
+        border-left-color $accentColor
   .sidebar-links
     padding 1.5rem 0
 
@@ -95,6 +74,4 @@ function resolveOpenGroupIndex (route, items) {
   .sidebar
     .nav-links
       display block
-    .sidebar-links
-      padding 1rem 0
 </style>
