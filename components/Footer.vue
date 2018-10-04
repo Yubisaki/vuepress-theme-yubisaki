@@ -1,6 +1,7 @@
 <template>
   <footer class="footer">
-    锁窗前月明色, 雕阑外夜气清
+    <span v-if="$themeConfig.footer">{{$themeConfig.footer}}</span>
+    <span v-else>powered by vuepress theme Yubisaki</span>
   </footer>
 </template>
 
