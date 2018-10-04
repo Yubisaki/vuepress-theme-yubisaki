@@ -21,7 +21,7 @@
         @mousedown="go(i)"
         @mouseenter="focus(i)">
         <a :href="s.path" @click.prevent>
-          <span class="page-title">{{ s.title || s.path }}</span>
+          <span class="suggestion-title">{{ s.title || s.path }}</span>
           <span v-if="s.header" class="header">&gt; {{ s.header.title }}</span>
         </a>
       </li>
@@ -53,7 +53,7 @@ export default {
       }
 
       const max = 5;
-      const pages = this.pages;
+      const pages = this.$pagination.all;
       const localePath = this.$localePath;
       const matches = item => {
         const keywords = this.getKeywords(item);
@@ -93,8 +93,7 @@ export default {
     // make suggestions align right when there are not enough items
     alignRight() {
       const navCount = (this.$site.themeConfig.nav || []).length;
-      const repo = this.$site.repo ? 1 : 0;
-      return navCount + repo <= 2;
+      return navCount <= 2;
     }
   },
   methods: {
@@ -158,29 +157,30 @@ export default {
     width: 10rem;
     color: lighten($textColor, 25%);
     display: inline-block;
-    border: 1px solid darken($borderColor, 10%);
+    border: 1px solid #e6ecf0;
     border-radius: 2rem;
     font-size: 0.9rem;
     line-height: 2rem;
     padding: 0 0.5rem 0 2rem;
     outline: none;
     transition: all 0.2s ease;
-    background: #fff url('../assets/search.svg') 0.6rem 0.5rem no-repeat;
+    background: #f5f8fa url('../assets/search.svg') 0.6rem 0.5rem no-repeat;
     background-size: 1rem;
 
     &:focus {
       cursor: auto;
-      border-color: $accentColor;
+      background-color #fff;
+      border: 2px solid $focusColor;
     }
   }
 
   .suggestions {
     background: #fff;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.25);
     width: 20rem;
     position: absolute;
-    top: 1.5rem;
-    border: 1px solid darken($borderColor, 10%);
-    border-radius: 6px;
+    top: 2rem;
+    border-radius: 3px;
     padding: 0.4rem;
     list-style-type: none;
 
@@ -192,12 +192,12 @@ export default {
   .suggestion {
     line-height: 1.4;
     padding: 0.4rem 0.6rem;
-    border-radius: 4px;
+    border-radius: 3px;
 
     a {
       color: lighten($textColor, 35%);
 
-      .page-title {
+      .suggestion-title {
         font-weight: 600;
       }
 
@@ -208,7 +208,8 @@ export default {
     }
 
     &.focused {
-      background-color: #f3f4f5;
+      // background-color: #f3f4f5;
+      background-color lighten(#ebf8f3, 20%);
 
       a {
         color: $accentColor;
@@ -226,7 +227,7 @@ export default {
 
     &:focus {
       left: 0;
-      width: 10rem;
+      width: 8rem;
     }
   }
 }
