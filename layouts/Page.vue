@@ -31,7 +31,6 @@
 </template>
 
 <script>
-import navLayoutMixin from '../lib/navLayout.mixin';
 import Comment from '../package/comment';
 import {
   resolvePage,
@@ -41,7 +40,6 @@ import {
 } from '../lib/util';
 
 export default {
-  mixins: [navLayoutMixin],
   components: { Comment },
   props: ['sidebarItems'],
   computed: {

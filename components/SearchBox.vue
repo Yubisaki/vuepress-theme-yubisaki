@@ -31,10 +31,8 @@
 
 <script>
 import { pageNormalize } from "../lib/util";
-import navLayoutMixin from '../lib/navLayout.mixin'
 
 export default {
-  mixins: [navLayoutMixin],  
   data() {
     return {
       query: "",
