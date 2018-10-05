@@ -57,8 +57,8 @@ export default {
 </script>
 
 <style src="prismjs/themes/prism-tomorrow.css"></style>
-<style src="../styles/theme.styl"></style>
-<style src="../styles/mobile.styl"></style>
+<style src="../styles/theme.styl" lang="stylus"></style>
+<style src="../styles/mobile.styl" lang="stylus"></style>
 <style lang="stylus">
 @import '../styles/config.styl';
 
