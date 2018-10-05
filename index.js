@@ -3,7 +3,9 @@ const path = require('path');
 module.exports = {
   layoutDir: 'layouts',
   plugins: [
-    '@yuepress/google-analytics',
+    ['@vuepress/google-analytics'],
+    ['@vuepress/back-to-top'],
+    ['@vuepress/medium-zoom'],
     ['@vuepress/register-components', {
       componentsDir: [
         path.resolve(__dirname, 'components')
@@ -17,6 +19,9 @@ module.exports = {
         }
       ]
     }],
-    '@yubisaki/pagination'
-  ]
+    ['@yubisaki/pagination']
+  ],
+  palette: {
+    $accentColor: 'red'
+  }
 }
