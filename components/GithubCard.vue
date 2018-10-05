@@ -111,6 +111,8 @@ export default {
 .user-link {
   display: inline-block;
   overflow: hidden;
+  // https://gist.github.com/ayamflow/b602ab436ac9f05660d9c15190f4fd7b
+  -webkit-mask-image: -webkit-radial-gradient(white, black); 
   background: #fff;
   border-radius: 100%;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
