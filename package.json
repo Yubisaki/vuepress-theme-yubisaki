@@ -26,9 +26,8 @@
     "date-fns": "^1.29.0",
     "github-markdown-css": "^2.10.0",
     "html2canvas": "^1.0.0-alpha.12",
-    "lerna": "^3.4.0",
     "node-polyglot": "^2.3.0",
     "raw-loader": "^0.5.1",
-    "vuepress": "^1.0.0-alpha.3"
+    "vuepress": "^1.0.0-alpha.4"
   }
 }
