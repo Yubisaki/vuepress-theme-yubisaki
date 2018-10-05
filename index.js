@@ -20,8 +20,5 @@ module.exports = {
       ]
     }],
     ['@yubisaki/pagination']
-  ],
-  palette: {
-    $accentColor: 'red'
-  }
+  ]
 }
