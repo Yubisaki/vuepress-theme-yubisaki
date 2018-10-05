@@ -14,7 +14,7 @@
   padding-left 4rem
   position fixed
   bottom 0
-  background #f2f2f2
+  background #eff5f3
   height $footerHeight
   line-height 32px
 
