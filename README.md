@@ -2,7 +2,7 @@
 
 # vuepress-theme-yubisaki [en]
 
-[中文说明](https://wuwaki.me/yubisaki/)
+[中文说明](https://wuwaki.me/yubisaki/intro.html)
 
 ## Installation
 
