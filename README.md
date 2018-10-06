@@ -17,12 +17,12 @@ npm install vuepress-theme-yubisaki@next --save-dev
 
 ## screenshots
 
-![](https://blog-1252181333.cossh.myqcloud.com/blog/110956.png){: width="400px" }
-![](https://blog-1252181333.cossh.myqcloud.com/blog/110610.png){: width="400px" }
-![](https://blog-1252181333.cossh.myqcloud.com/blog/110735.png){: width="200px" height="360px" }
-![](https://blog-1252181333.cossh.myqcloud.com/blog/115756.png){: width="200px" height="360px" }
-![](https://blog-1252181333.cossh.myqcloud.com/blog/110901.png){: width="200px" height="360px" }
-![](https://blog-1252181333.cossh.myqcloud.com/blog/115523.png){: width="200px" height="360px" }
+<img src="https://blog-1252181333.cossh.myqcloud.com/blog/110956.png" width="400" />
+<img src="https://blog-1252181333.cossh.myqcloud.com/blog/110610.png" width="400" />
+<img src="https://blog-1252181333.cossh.myqcloud.com/blog/110735.png" width="200" height="360" />
+<img src="https://blog-1252181333.cossh.myqcloud.com/blog/115756.png" width="200" height="360" />
+<img src="https://blog-1252181333.cossh.myqcloud.com/blog/110901.png" width="200" height="360" />
+<img src="https://blog-1252181333.cossh.myqcloud.com/blog/115523.png" width="200" height="360" />
 
 ## Article
 
@@ -86,8 +86,8 @@ module.exports = {
 }
 ```
 
-![](https://blog-1252181333.cossh.myqcloud.com/blog/180137.png){: width="400px" }
-![](https://blog-1252181333.cossh.myqcloud.com/blog/180218.png){: width="400px" }
+<img src="https://blog-1252181333.cossh.myqcloud.com/blog/180137.png" width="400" />
+<img src="https://blog-1252181333.cossh.myqcloud.com/blog/180218.png" width="400" />
 
 ## plugins
 
