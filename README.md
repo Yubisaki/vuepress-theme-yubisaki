@@ -1,18 +1,28 @@
-[![npm](https://img.shields.io/badge/npm-vuepress--theme--yubisaki-green.svg?style=popout-square)](https://www.npmjs.com/package/vuepress-theme-yubisaki)
+[![npm](https://img.shields.io/badge/npm-v3.0.3-green.svg?style=popout-square)](https://www.npmjs.com/package/vuepress-theme-yubisaki)
+[![npm](https://img.shields.io/badge/npm-next-green.svg?style=popout-square)](https://www.npmjs.com/package/vuepress-theme-yubisaki)
 
-# vuepress-theme-yubisaki [en]
+# vuepress-theme-yubisaki@next [en]
 
-[中文说明](https://wuwaki.me/yubisaki/)
+[中文说明](https://wuwaki.me/yubisaki/intro.html)
 
 ## Installation
 
 ```bash
-yarn add vuepress-theme-yubisaki -S
+yarn add vuepress-theme-yubisaki@next -S
 ```
 or with npm
 ```bash
-npm install vuepress-theme-yubisaki --save-dev
+npm install vuepress-theme-yubisaki@next --save-dev
 ```
+
+## screenshots
+
+![](https://blog-1252181333.cossh.myqcloud.com/blog/110956.png){: width="400px" }
+![](https://blog-1252181333.cossh.myqcloud.com/blog/110610.png){: width="400px" }
+![](https://blog-1252181333.cossh.myqcloud.com/blog/110735.png){: width="200px" height="360px" }
+![](https://blog-1252181333.cossh.myqcloud.com/blog/115756.png){: width="200px" height="360px" }
+![](https://blog-1252181333.cossh.myqcloud.com/blog/110901.png){: width="200px" height="360px" }
+![](https://blog-1252181333.cossh.myqcloud.com/blog/115523.png){: width="200px" height="360px" }
 
 ## Article
 
@@ -51,6 +61,7 @@ this will create a folder called javascript and a `README.md` file in it with re
 title: Article title
 # date is used for article sorting
 date: 2017-08-15 10:27:26
+type: post # post which type is post will be include in post list
 tag: # Article tag, can be a String or an Array
   - js
   - react
@@ -68,19 +79,31 @@ To let the theme filter by tags, add the following information alongside your pr
 ```js
 module.exports = {
   themeConfig: {
-    tags: true,
     nav: [
-      { text: 'TAGS', link: '/tags/', tags: true }
+      { text: 'TAGS', link: '/tag/' }
     ]
   }
 }
 ```
 
-the above configuration let's theme know that `TAGS` field in the navbar is specifically for browsing tags from posts. When you visit the above path, it looks like following:
+![](https://blog-1252181333.cossh.myqcloud.com/blog/180137.png){: width="400px" }
+![](https://blog-1252181333.cossh.myqcloud.com/blog/180218.png){: width="400px" }
 
-![](https://blog-1252181333.cossh.myqcloud.com/blog/180137.png)
+## plugins
 
-![](https://blog-1252181333.cossh.myqcloud.com/blog/180218.png)
+**Here are some plugins which the theme used [plugins](https://vuepress.vuejs.org/plugin/#using-a-plugin)**
+
+- [@vuepress/google-analytics](https://vuepress.vuejs.org/plugin/official.html#vuepress-google-analytics)
+- [@vuepress/back-to-top](https://vuepress.vuejs.org/plugin/official.html#vuepress-back-to-top)
+- [@vuepress/medium-zoom](https://vuepress.vuejs.org/plugin/official.html#vuepress-medium-zoom)
+- [@vuepress/register-components](https://github.com/vuejs/vuepress/blob/master/packages/%40vuepress/plugin-register-components/README.md)
+- [@yubisaki/vuepress-plugin-blog](https://github.com/Yubisaki/vuepress-plugin-blog)
+- [@yubisaki/vuepress-plugin-pagination](https://github.com/Yubisaki/vuepress-plugin-pagination)
+
+`@yubisaki/vuepress-plugin-blog` This blog plugin support two markdown plugings, you can use them directly:
+
+- [markdown-it-task-lists](https://github.com/revin/markdown-it-task-lists)   
+- [markdown-it-imsize](https://github.com/tatsy/markdown-it-imsize)
 
 ## Comment System
 
@@ -94,44 +117,26 @@ For your reference, I have put the configuration of my blog (`.vuepress/config.j
 
 ```js
 module.exports = {
-  // Enable custom themes
   theme: 'yubisaki',
   title: 'Yubisaki',
   description: 'vuepress theme Yubisaki',
   head: [
-      ['link', { rel: 'icon', href: `/favicon.ico` }]
+    ['link', { rel: 'icon', href: `/favicon.ico` }]
   ],
   port: 3000,
-  // Google Analytics ID
-  ga: 'xxxxx',
-  // PWA support
+  ga: 'xxxxx', // Google Analytics ID
   serviceWorker: true,
-  // fuck IE
   evergreen: true,
   markdown: {
-    // markdown-it-anchor options
     anchor: { permalink: true },
-    // markdown-it-toc options
-    toc: { includeLevel: [1, 2] },
-    config: md => {
-      md.use(require('markdown-it-task-lists')) // a checkbox TODO List plugin
-        .use(require('markdown-it-imsize'), { autofill: true }) // Support for custom md image size ![test](image.png =100x200)
-    }
+    toc: { includeLevel: [1, 2] }
   },
-  // Yubisaki theme specific configuration
   themeConfig: {
-    // Blog background image
-    background: '/background/path',
-    tags: true,
-    // github card
-    github: 'github username',
+    github: 'bloss',
     // favicon image (logo)
     logo: '/logo/path',
-    // Custom article title color
-    accentColor: '#ac3e40',
-    // Number of articles displayed per page
-    per_page: 5,
     // The time format for creating an article. If not set, it will not be displayed. Optional [yyyy-MM-dd HH:mm:ss]
+    footer: 'here is footer text',
     date_format: 'yyyy-MM-dd',
     // options for comment (gitalk), don't support flipMoveOptions and render instane method
     comment: {
@@ -146,17 +151,16 @@ module.exports = {
     },
     // customize the links on the navigation bar
     nav: [
-        { text: 'HOME', link: '/', root: true }, // Specify this as the root directory of the blog post
-        { text: 'TAGS', link: '/tags/', tags: true }, // Specify the tags directory
-        { text: 'GITHUB', link: 'https://github.com/bloss' },
-        { text: 'about me', link: '/about/' }, 
+      { text: 'HOME', link: '/' }, 
+      { text: 'TAGS', link: '/tag/' }, 
+      { text: 'GITHUB', link: 'https://github.com/bloss' },
+      { text: 'about me', link: '/about/' }, 
     ]
   }
 }
 ```
 
-
-## customize the layout
+## Activity layout
 
 Besides the basic `yaml` config generated by `yubisaki-shell`, you can add the following information to customize the layout as you want:
 
