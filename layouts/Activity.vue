@@ -126,6 +126,9 @@ export default {
     text-align center
     color lighten($textColor, 25%)
 
+.content
+  img
+    max-width 100%
 @media (max-width: $MQMobile)
   .home
     .features
