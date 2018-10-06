@@ -91,7 +91,9 @@ module.exports = {
 
 ## plugins
 
-**Here are some plugins which the theme used [plugins](https://vuepress.vuejs.org/plugin/#using-a-plugin)**
+**Here are some plugins which the theme used** 
+
+[plugin introduction](https://vuepress.vuejs.org/plugin/#using-a-plugin)
 
 - [@vuepress/google-analytics](https://vuepress.vuejs.org/plugin/official.html#vuepress-google-analytics)
 - [@vuepress/back-to-top](https://vuepress.vuejs.org/plugin/official.html#vuepress-back-to-top)
