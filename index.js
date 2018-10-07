@@ -19,6 +19,7 @@ module.exports = {
         }
       ]
     }],
-    ['@yubisaki/pagination']
+    ['@yubisaki/pagination'],
+    'flowchart'
   ]
 }
