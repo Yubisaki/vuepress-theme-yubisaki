@@ -24,8 +24,6 @@ npm install vuepress-theme-yubisaki@next --save-dev
 <div>
   <img src="https://blog-1252181333.cossh.myqcloud.com/blog/110735.png" width="200" height="360" style="display:inline"/>
   <img src="https://blog-1252181333.cossh.myqcloud.com/blog/115756.png" width="200" height="360" style="display:inline"/>
-</div>
-<div>
   <img src="https://blog-1252181333.cossh.myqcloud.com/blog/110901.png" width="200" height="360" style="display:inline"/>
   <img src="https://blog-1252181333.cossh.myqcloud.com/blog/115523.png" width="200" height="360" style="display:inline"/>
 </div>
