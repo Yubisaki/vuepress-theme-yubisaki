@@ -20,29 +20,33 @@
   </header>
 </template>
 
-<script>
-import SidebarButton from "./SidebarButton.vue";
-import SearchBox from "./SearchBox.vue";
-import NavLinks from "./NavLinks.vue";
-
-export default {
-  components: { SidebarButton, NavLinks, SearchBox }
-};
-</script>
-
 <style lang="stylus">
 @import '../styles/config.styl';
 
 .nav-header {
   position relative
-  padding 0.7rem 1rem
+  padding 0 1rem
   margin 0 auto
   width $appWidth
-  line-height $navbarHeight - 1.4rem
+  height $navbarHeight
+  line-height $navbarHeight
 }
 
+.home-link
+  height $navbarHeight
+  line-height $navbarHeight
+  margin-right 0.75rem
+
 .navbar {
-  position: relative;
+  position fixed
+  z-index 20
+  top 0
+  left 0
+  right 0
+  height $navbarHeight
+  background-color #fff
+  box-sizing border-box
+  border-bottom 1px solid rgba(0,0,0,0.25)
 
   a, span, img {
     display: inline-block;
@@ -51,6 +55,7 @@ export default {
   .logo {
     height: $navbarHeight - 1.4rem;
     min-width: $navbarHeight - 1.4rem;
+    margin-top: 0.7rem;
     margin-right: 0.8rem;
     vertical-align: top;
   }
@@ -65,8 +70,8 @@ export default {
   .links {
     font-size: 0.9rem;
     position: absolute;
-    right: 1.5rem;
-    top: 0.7rem;
+    right: 2.5rem;
+    top: 0;
   }
 }
 
@@ -74,6 +79,7 @@ export default {
   .nav-header {
     position static
     width 100%
+    padding 0
   }
 
 @media (max-width: $MQMobile) {

@@ -1,27 +1,44 @@
 {
   "name": "vuepress-theme-yubisaki",
-  "version": "3.0.3",
+  "version": "3.0.3-alpha.8.0",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
   "description": "vuepress-theme",
   "repository": "https://github.com/Bloss/vuepress-theme-yubisaki",
   "homepage": "https://github.com/Bloss/vuepress-theme-yubisaki/blob/master/README.md",
-  "main": "util.js",
   "keywords": [
     "vuepress",
     "theme",
     "vuepress-theme"
   ],
+  "author": "子肃 <stickmyc@163.com>",
+  "license": "MIT",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "release": "release-it"
   },
-  "author": "wuwaki",
-  "license": "ISC",
+  "devDependencies": {
+    "conventional-changelog-cli": "^2.0.5",
+    "release-it": "^7.6.1"
+  },
   "dependencies": {
+    "@vuepress/plugin-back-to-top": "^1.0.0-alpha.0",
+    "@vuepress/plugin-google-analytics": "^1.0.0-alpha.0",
+    "@vuepress/plugin-medium-zoom": "^1.0.0-alpha.0",
+    "@vuepress/plugin-pwa": "^1.0.0-alpha.0",
+    "@vuepress/plugin-register-components": "^1.0.0-alpha.0",
+    "@yubisaki/vuepress-plugin-blog": "0.1.5",
+    "@yubisaki/vuepress-plugin-pagination": "0.1.6",
     "autosize": "^4.0.2",
     "axios": "^0.18.0",
     "date-fns": "^1.29.0",
     "github-markdown-css": "^2.10.0",
     "html2canvas": "^1.0.0-alpha.12",
+    "markdown-it-imsize": "^2.0.1",
+    "markdown-it-task-lists": "^2.1.1",
     "node-polyglot": "^2.3.0",
-    "raw-loader": "^0.5.1"
+    "raw-loader": "^0.5.1",
+    "vuepress": "^1.0.0-alpha.5",
+    "vuepress-plugin-flowchart": "^1.4.2"
   }
 }

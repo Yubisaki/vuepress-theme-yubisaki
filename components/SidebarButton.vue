@@ -15,8 +15,8 @@
   height 1.25rem
   position absolute
   padding 0.6rem
-  top 0.6rem
-  left 1rem
+  top 0.275rem // ($navbarHeight - width - padding * 2) / 2
+  left 1rem 
   .icon
     display block
     width 1.25rem

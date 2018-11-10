@@ -14,44 +14,7 @@ body
   -moz-osx-font-smoothing grayscale
   font-size 16px
   color $textColor
-  background #f6f6f6
-
-.page
-  padding-left $sidebarWidth
-
-.navbar
-  position fixed
-  z-index 20
-  top 0
-  left 0
-  right 0
-  height $navbarHeight
-  background-color #fff
-  box-sizing border-box
-  border-bottom 1px solid $borderColor
-
-.sidebar-mask
-  position fixed
-  z-index 9
-  top 0
-  left 0
-  width 100vw
-  height 100vh
-  display none
-
-.sidebar
-  font-size 15px
-  background-color #fff
-  width $sidebarWidth
-  position fixed
-  z-index 10
-  margin 0
-  top $navbarHeight
-  left 0
-  bottom 0
-  box-sizing border-box
-  border-right 1px solid $borderColor
-  overflow-y auto
+  background #e6ecf0
 
 .content:not(.custom)
   max-width $contentWidth
@@ -164,65 +127,5 @@ tr
 th, td
   border 1px solid #dfe2e5
   padding .6em 1em
-
-.theme-line
-  width 100%
-  height 1px
-  transform scaleY(0.5)
-  transform-origin 50% 100%
-  background #DCDCDC
-
-.custom-layout
-  padding-top $navbarHeight
-
-.wrap
-  width $appWidth
-  padding 3rem 1rem
-  margin 0 auto
-
-.background-mask
-  width: 100%
-  height: 100%
-  position fixed
-  background-size cover
-  left 0
-  top 0
-  z-index -1
-
-// container
-.container
-  padding 1rem 0
-
-.page-container
-  width $pageWidth
-
-.theme-container
-  &.sidebar-open
-    .sidebar-mask
-      display: block
-  &.no-navbar
-    .content:not(.custom)
-      h1, h2, h3, h4, h5, h6
-        margin-top 1.5rem
-        padding-top 0
-
-
-@media (max-width ($MQNarrow + 1px))
-  .container
-    display block
-
-  .page-container
-    width 100%
-
-  .wrap
-    padding 3rem 0 0 0
-    width 100%
-
-@media (min-width: ($MQMobile + 1px))
-  .theme-container.no-sidebar
-    .sidebar
-      display none
-    .page
-      padding-left 0
 
 @require './mobile.styl'
