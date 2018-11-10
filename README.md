@@ -17,12 +17,18 @@ npm install vuepress-theme-yubisaki@next --save-dev
 
 ## screenshots
 
-<img src="https://blog-1252181333.cossh.myqcloud.com/blog/110956.png" width="400" />
-<img src="https://blog-1252181333.cossh.myqcloud.com/blog/110610.png" width="400" />
-<img src="https://blog-1252181333.cossh.myqcloud.com/blog/110735.png" width="200" height="360" />
-<img src="https://blog-1252181333.cossh.myqcloud.com/blog/115756.png" width="200" height="360" />
-<img src="https://blog-1252181333.cossh.myqcloud.com/blog/110901.png" width="200" height="360" />
-<img src="https://blog-1252181333.cossh.myqcloud.com/blog/115523.png" width="200" height="360" />
+<div>
+  <img src="https://blog-1252181333.cossh.myqcloud.com/blog/110956.png" style="display:inline" width="400" />
+  <img src="https://blog-1252181333.cossh.myqcloud.com/blog/110610.png" style="display:inline" width="400" />
+</div>
+<div>
+  <img src="https://blog-1252181333.cossh.myqcloud.com/blog/110735.png" width="200" height="360" style="display:inline"/>
+  <img src="https://blog-1252181333.cossh.myqcloud.com/blog/115756.png" width="200" height="360" style="display:inline"/>
+</div>
+<div>
+  <img src="https://blog-1252181333.cossh.myqcloud.com/blog/110901.png" width="200" height="360" style="display:inline"/>
+  <img src="https://blog-1252181333.cossh.myqcloud.com/blog/115523.png" width="200" height="360" style="display:inline"/>
+</div>
 
 ## Article
 
@@ -42,7 +48,7 @@ As in the above form, adding the `<!-- more -->` tag to the `md` file, will rend
 ## Articles meta-data
 Use [yubisaki shell](https://github.com/Bloss/yubisaki-shell) to generate a new post with automatic date-time stamp, title and metadata etc. this helps the cards to sort according to date automatically, also filter the posts by tags etc.
 
-install shell with 
+install shell with
 ```bash
 yarn global add yubisaki-shell
 ```
@@ -91,7 +97,7 @@ module.exports = {
 
 ## plugins
 
-**Here are some plugins which the theme used** 
+**Here are some plugins which the theme used**
 
 [plugin introduction](https://vuepress.vuejs.org/plugin/#using-a-plugin)
 
@@ -104,7 +110,7 @@ module.exports = {
 
 `@yubisaki/vuepress-plugin-blog` This blog plugin support two markdown plugings, you can use them directly:
 
-- [markdown-it-task-lists](https://github.com/revin/markdown-it-task-lists)   
+- [markdown-it-task-lists](https://github.com/revin/markdown-it-task-lists)
 - [markdown-it-imsize](https://github.com/tatsy/markdown-it-imsize)
 
 ## Comment System
@@ -115,7 +121,7 @@ But, don't support flipMoveOptions and render instane method
 
 ## Configuration
 
-For your reference, I have put the configuration of my blog (`.vuepress/config.js`) here: 
+For your reference, I have put the configuration of my blog (`.vuepress/config.js`) here:
 
 ```js
 module.exports = {
@@ -153,10 +159,10 @@ module.exports = {
     },
     // customize the links on the navigation bar
     nav: [
-      { text: 'HOME', link: '/' }, 
-      { text: 'TAGS', link: '/tag/' }, 
+      { text: 'HOME', link: '/' },
+      { text: 'TAGS', link: '/tag/' },
       { text: 'GITHUB', link: 'https://github.com/bloss' },
-      { text: 'about me', link: '/about/' }, 
+      { text: 'about me', link: '/about/' },
     ]
   }
 }
@@ -175,7 +181,7 @@ hidden: true # Set whether to display in the article list
 tagline: Vuepress blog theme # description
 heroImage: /static/logo.png # logo
 # Refer to the configuration of the official default theme for service static files
-actionText: Learn about → 
+actionText: Learn about →
 actionLink: /yubisaki/usage.html
 # If you want to have more than one action button (in this case actionText and actionLink will be ignored):
 # actions :
@@ -214,7 +220,7 @@ If you haven't installed vuepress gloablly, these scripts will be helpful to fin
 npm run docs:dev
 ```
 
-or 
+or
 ```bash
 npm run docs:build
 ```
