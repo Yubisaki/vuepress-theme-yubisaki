@@ -225,6 +225,4 @@ Accordingly.
 
 ## TODO
 
-- Tag Cloud
-- Article classification
 - More cards like github card
