@@ -175,7 +175,6 @@ to customize the layout, add the following to the header of the `markdown` file
 ```yaml
 heroText: Yubisaki # title
 activity: true # Use a custom activity layout that will collapse the card bar on the right
-hidden: true # Set whether to display in the article list
 tagline: Vuepress blog theme # description
 heroImage: /static/logo.png # logo
 # Refer to the configuration of the official default theme for service static files
