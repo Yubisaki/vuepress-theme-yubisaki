@@ -1,6 +1,13 @@
 @require './config'
 
 .content
+  :not(pre)>code
+    color lighten($textColor, 20%)
+    padding 0.25rem 0.5rem
+    margin 0
+    font-size 0.85em
+    background: rgba(255,229,100,.2);
+    border-radius 3px
   code
     color lighten($textColor, 20%)
     padding 0.25rem 0.5rem
