@@ -1,16 +1,18 @@
-<!-- <pre style="color: #1890ff">
-                  _       _                 _      _
-  _   _   _   _  | |__   (_)  ___    __ _  | | __ (_)
+<pre align="center">
+<code style="color: #1890ff">
+                 _       _                 _      _
+ _   _   _   _  | |__   (_)  ___    __ _  | | __ (_)
 | | | | | | | | | '_ \  | | / __|  / _` | | |/ / | |
 | |_| | | |_| | | |_) | | | \__ \ | (_| | |   <  | |
-  \__, |  \__,_| |_.__/  |_| |___/  \__,_| |_|\_\ |_|
+ \__, |  \__,_| |_.__/  |_| |___/  \__,_| |_|\_\ |_|
   |___/
-</pre> -->
+</code>
+</pre>
 
 <p align="center">
-  <a href="https://wuwaki.me/yubisaki/intro.html">
+  <!-- <a href="https://wuwaki.me/yubisaki/intro.html">
     <img width="360" height="120" src="https://blog-1252181333.cos.ap-shanghai.myqcloud.com/blog/yubisaki.png" alt="Logo">
-  </a>
+  </a> -->
   <h3 align="center">yubisaki theme</h3>
   <p align="center">A blog theme for vuepress</p>
 </p>
