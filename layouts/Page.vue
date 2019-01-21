@@ -2,46 +2,42 @@
   <LayoutContainer>
     <div class="card">
       <div class="content-header">
-        <h1 v-if="title" 
-          class="page-title">
-          {{ title }}
-        </h1>
-        <span class="page-timestamp">{{ createTime }}</span>      
+        <h1 v-if="title" class="page-title">{{ title }}</h1>
+        <span class="page-timestamp">{{ createTime }}</span>
       </div>
       <Content :custom="false"/>
       <div class="content page-nav" v-if="prev || next">
         <p class="inner">
-          <span v-if="prev" class="prev">
-            ← <router-link v-if="prev" class="prev" :to="prev.path">
-              {{ prev.title || prev.path }}
-            </router-link>
+          <span v-if="prev" class="prev">←
+            <router-link v-if="prev" class="prev" :to="prev.path">{{ prev.title || prev.path }}</router-link>
           </span>
           <span v-if="next" class="next">
-            <router-link v-if="next" :to="next.path">
-              {{ next.title || next.path }}
-            </router-link> →
+            <router-link v-if="next" :to="next.path">{{ next.title || next.path }}</router-link>→
           </span>
         </p>
       </div>
     </div>
     <div id="comment-container" v-if="isComment">
-      <Comment />
+      <VssueComponent :title="title" :options="vssueOptions"/>
     </div>
   </LayoutContainer>
 </template>
 
 <script>
-import Comment from '../package/comment';
+// import Comment from '../package/comment';
+import { VssueComponent } from "vssue";
+import "vssue/dist/vssue.css";
+import GithubV3 from "@vssue/api-github-v3";
 import {
   resolvePage,
   normalize,
   endingSlashRE,
   pageNormalize
-} from '../lib/util';
+} from "../lib/util";
 
 export default {
-  components: { Comment },
-  props: ['sidebarItems'],
+  components: { VssueComponent },
+  props: ["sidebarItems"],
   computed: {
     prev() {
       const prev = this.$page.frontmatter.prev;
@@ -66,20 +62,35 @@ export default {
     title() {
       return this.$page.frontmatter.title;
     },
+    vssueOptions() {
+      const {
+        owner,
+        repo,
+        clientId,
+        clientSecret
+      } = this.$site.themeConfig.comment;
+      return {
+        api: GithubV3,
+        owner,
+        repo,
+        clientId,
+        clientSecret
+      };
+    },
     isComment() {
-      return this.$site.themeConfig.comment && this.$page.type === 'post'
+      return this.$site.themeConfig.comment && this.$page.type === "post";
     },
     createTime() {
       const stamp = this.$page.frontmatter.date;
-      const format = this.$site.themeConfig['date_format'];
-      if (!stamp || !format) return '';
+      const format = this.$site.themeConfig["date_format"];
+      if (!stamp || !format) return "";
       const date = new Date(stamp);
       return date.Format(format);
     },
     overrideStyle() {
-      const accentColor = this.$site.themeConfig['accentColor'];
+      const accentColor = this.$site.themeConfig["accentColor"];
       return accentColor ? { color: accentColor } : {};
-    },
+    }
   }
 };
 
@@ -97,7 +108,7 @@ function find(name, pages, offset) {
       if (offset < 0 && i === 0) return false;
       if (offset > 0 && i === pages.length - 1) return false;
       const page = pages[i + offset];
-      return page.path === '/' ? false : page;
+      return page.path === "/" ? false : page;
     }
   }
 }
