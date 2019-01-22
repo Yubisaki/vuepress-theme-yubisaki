@@ -1,3 +1,12 @@
+## [3.1.4](https://github.com/Bloss/vuepress-theme-yubisaki/compare/v3.1.3...v3.1.4) (2019-01-22)
+
+
+### Bug Fixes
+
+* hide scroll bar ([c179e2d](https://github.com/Bloss/vuepress-theme-yubisaki/commit/c179e2d))
+
+
+
 ## [3.1.3](https://github.com/Bloss/vuepress-theme-yubisaki/compare/v3.1.2...v3.1.3) (2019-01-10)
 
 
