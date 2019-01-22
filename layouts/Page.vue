@@ -18,16 +18,12 @@
       </div>
     </div>
     <div id="comment-container" v-if="isComment">
-      <VssueComponent :title="title" :options="vssueOptions"/>
+      <Vssue :title="title" :options="$site.themeConfig.comment" />
     </div>
   </LayoutContainer>
 </template>
 
 <script>
-// import Comment from '../package/comment';
-import { VssueComponent } from "vssue";
-import "vssue/dist/vssue.css";
-import GithubV3 from "@vssue/api-github-v3";
 import {
   resolvePage,
   normalize,
@@ -36,7 +32,6 @@ import {
 } from "../lib/util";
 
 export default {
-  components: { VssueComponent },
   props: ["sidebarItems"],
   computed: {
     prev() {
@@ -61,21 +56,6 @@ export default {
     },
     title() {
       return this.$page.frontmatter.title;
-    },
-    vssueOptions() {
-      const {
-        owner,
-        repo,
-        clientId,
-        clientSecret
-      } = this.$site.themeConfig.comment;
-      return {
-        api: GithubV3,
-        owner,
-        repo,
-        clientId,
-        clientSecret
-      };
     },
     isComment() {
       return this.$site.themeConfig.comment && this.$page.type === "post";
@@ -118,6 +98,7 @@ function find(name, pages, offset) {
 <style lang="stylus" src="../styles/card.styl"></style>
 <style lang="stylus">
 @import '../styles/config.styl';
+@import '../styles/vssue.styl';
 
 #comment-container {
   color: #6190E8;

@@ -6,6 +6,9 @@ module.exports = {
     ['@vuepress/google-analytics'],
     ['@vuepress/back-to-top'],
     ['@vuepress/medium-zoom'],
+    ['@vssue/vuepress-plugin-vssue', {
+      platform: 'github',
+    }],
     ['@vuepress/register-components', {
       componentsDir: [
         path.resolve(__dirname, 'components')
