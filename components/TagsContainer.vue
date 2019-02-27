@@ -4,6 +4,7 @@
     <div>
       <Tag v-for="(tag, idx) in tags"
         :key="idx"
+        :tag="tag"
       >
         <router-link :to="tag.path" class="tag-link">
           # {{tag.name}} {{tag.pages.length}}
