@@ -18,7 +18,7 @@
       </div>
     </div>
     <div id="comment-container" v-if="isComment">
-      <Vssue :title="title" />
+      <Vssue :title="title" :options="$site.themeConfig.comments" />
     </div>
   </LayoutContainer>
 </template>
