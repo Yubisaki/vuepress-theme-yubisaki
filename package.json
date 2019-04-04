@@ -7,6 +7,7 @@
   "description": "vuepress-theme",
   "repository": "https://github.com/Bloss/vuepress-theme-yubisaki",
   "homepage": "https://github.com/Bloss/vuepress-theme-yubisaki/blob/master/README.md",
+  "main": "index.js",
   "keywords": [
     "vuepress",
     "theme",
