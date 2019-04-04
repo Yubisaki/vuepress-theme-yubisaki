@@ -27,8 +27,8 @@
     "@vuepress/plugin-medium-zoom": "^1.0.0-alpha.20",
     "@vuepress/plugin-pwa": "^1.0.0-alpha.20",
     "@vuepress/plugin-register-components": "^1.0.0-alpha.20",
-    "@yubisaki/vuepress-plugin-blog": "0.1.6",
-    "@yubisaki/vuepress-plugin-pagination": "0.1.8",
+    "@yubisaki/vuepress-plugin-blog": "0.1.7",
+    "@yubisaki/vuepress-plugin-pagination": "0.1.9",
     "@vssue/vuepress-plugin-vssue": "^0.5.2",
     "autosize": "^4.0.2",
     "axios": "^0.18.0",
@@ -39,7 +39,7 @@
     "markdown-it-task-lists": "^2.1.1",
     "node-polyglot": "^2.3.0",
     "raw-loader": "^0.5.1",
-    "vuepress": "^1.0.0-alpha.20",
+    "vuepress": "^1.0.0-alpha.46",
     "vuepress-plugin-flowchart": "^1.4.2"
   }
 }
