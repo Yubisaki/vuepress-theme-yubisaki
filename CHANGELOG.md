@@ -1,3 +1,7 @@
+## [3.1.9](https://github.com/Bloss/vuepress-theme-yubisaki/compare/v3.1.8...v3.1.9) (2019-04-04)
+
+
+
 ## [3.1.8](https://github.com/Bloss/vuepress-theme-yubisaki/compare/v3.1.7...v3.1.8) (2019-04-04)
 
 
