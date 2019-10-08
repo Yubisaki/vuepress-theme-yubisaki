@@ -17,7 +17,7 @@ body
   color $textColor
   background #e6ecf0
 
-.content:not(.custom)
+.content:not(.custom), .content__default:not(.custom)
   max-width $contentWidth
   margin 0 auto
   padding 2rem 2.5rem
@@ -37,7 +37,7 @@ body
   margin 0 auto
   padding 0 2rem
 
-.content.custom
+.content.custom, .content__default.custom
   padding 0
   margin 0
 
@@ -73,7 +73,7 @@ strong
 h1, h2, h3, h4, h5, h6
   font-weight 600
   line-height 1.25
-  .content:not(.custom) > &
+  .content:not(.custom) > &, .content__default:not(.custom) > &
     margin-top (0.5rem - $navbarHeight)
     padding-top ($navbarHeight + 1rem)
     margin-bottom 0

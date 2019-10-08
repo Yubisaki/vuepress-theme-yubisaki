@@ -7,7 +7,7 @@ $mobileSidebarWidth = $sidebarWidth * 0.8
   .sidebar
     font-size 15px
     width $mobileSidebarWidth
-  .content:not(.custom)
+  .content:not(.custom), .content__default:not(.custom)
     padding 2rem
   .content-header
     padding 0 2rem
@@ -27,9 +27,9 @@ $mobileSidebarWidth = $sidebarWidth * 0.8
 @media (max-width: $MQMobileNarrow)
   h1
     font-size 1.9rem
-  .content:not(.custom)
+  .content:not(.custom), .content__default:not(.custom)
     padding 1.5rem
-  .content
+  .content, .content__default
     pre, pre[class*="language-"]
       margin 0.85rem -1.5rem
       border-radius 0
